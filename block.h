@@ -13,7 +13,7 @@ struct block {
 const int BLOCKNUM = 24; //ƒuƒƒbƒN‚Ì‰ŠúŒÂ”.
 const int BLOCKSIZE = 20; //ƒuƒƒbƒN‚Ìˆê•Ó‚Ì’·‚³.
 
-void draw_block(vector<block> v);
-void check_block_bullet(vector<bullet>& bul, vector<block>& blo);
-void block_initialize(vector<block>& blo);
-void check_block_enemybullet(vector<bullet>& bul, vector<block>& blo);  //ƒuƒƒbƒN‚Æ“G‚Ìe’e‚ªG‚ê‚Ä‚¢‚ê‚Îe’e‚ğíœ.
+void draw_block(objects objects1);
+void check_block_bullet(objects& objects1);
+void block_initialize(objects& objects1);
+void check_block_enemybullet(objects& objects1);  //ƒuƒƒbƒN‚Æ“G‚Ìe’e‚ªG‚ê‚Ä‚¢‚ê‚Îe’e‚ğíœ.

@@ -19,6 +19,7 @@ const int WHITE = GetColor(255, 255, 255);
 const int RED = GetColor(255, 0, 0);
 const int ORANGE = GetColor(255, 165, 0);
 const int FLAMERATE = 33;
+const int STAGE_NUM = 2;//ステージ数.
 
 
 using std::vector;

@@ -1,7 +1,11 @@
 #pragma once
 #include"invadergame2.h"
 
-void check_enemy(vector<enemy>& ene, vector<bullet>& bul, vector<effect>& eff, int& s) {
+void check_enemy(objects& objects1) {
+	vector<enemy>& ene = objects1.ene;
+	vector<bullet>& bul = objects1.bul;
+	vector<effect>& eff = objects1.exp_eff;
+	int& s = objects1.score;
 	for (int i = 0; i < ENEMYNUM; i++) {
 		int x1 = ene.at(i).x, y1 = ene.at(i).y;
 		for (int j = 0; j < MAXBULLETNUM; j++) {

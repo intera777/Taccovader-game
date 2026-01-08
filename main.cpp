@@ -11,21 +11,36 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 	SetBackgroundColor(0, 0, 0);
 	SetDrawScreen(DX_SCREEN_BACK);
 
-	user user1; //ユーザーの情報を持つ構造体.
-	vector<bullet> bul(MAXBULLETNUM); //弾の情報を持つ構造体の配列.
-	vector<bullet> ene_bul(ENEMYNUM); //敵が撃つ弾の情報を持つ構造体の配列.
-	vector<enemy> ene(ENEMYNUM); //敵の情報を持つ構造体の配列.
-	vector<block> blo(BLOCKNUM); //ブロックの情報を持つ構造体の配列.
-	vector<effect> exp_eff(ENEMYNUM); //敵が倒された時のエフェクトの情報を持つ構造体.
+	objects objects1;
 
-	//銃弾関係の定数
-	int bullet_cooltime = 0; //再び銃弾が発射可能になるまでの時間.
+	user& user1=objects1.user1; //ユーザーの情報を持つ構造体.
+	vector<bullet>& bul=objects1.bul; //弾の情報を持つ構造体の配列.
+	vector<bullet>& ene_bul=objects1.ene_bul; //敵が撃つ弾の情報を持つ構造体の配列.
+	vector<enemy>& ene=objects1.ene; //敵の情報を持つ構造体の配列.
+	vector<block>& blo=objects1.blo; //ブロックの情報を持つ構造体の配列.
+	vector<effect>& exp_eff=objects1.exp_eff; //敵が倒された時のエフェクトの情報を持つ構造体.
+	
+	//配列の大きさを指定.
+	bul.resize(MAXBULLETNUM);
+	ene_bul.resize(ENEMYNUM);
+	ene.resize(ENEMYNUM);
+	blo.resize(BLOCKNUM);
+	exp_eff.resize(ENEMYNUM);
+
+	objects1.bullet_cooltime = 0; //再び銃弾が発射可能になるまでの時間.
 
 	//敵関係の定数
-	int enemy_cycle = 0; //敵の動きが一周したらリセット.
-	int enemy_bullet_cooltime = 0;
+	objects1.enemy_cycle= 0; //敵の動きが一周したらリセット.
+	objects1.enemy_bullet_cooltime = 0;
 
-	int score = 0;
+	objects1.score = 0;
+	objects1.stage = 1;//現在のステージ.
+
+	int& bullet_cooltime = objects1.bullet_cooltime;
+	int& enemy_cycle = objects1.enemy_cycle;
+	int& enemy_bullet_cooltime = objects1.enemy_bullet_cooltime;
+	int& score = objects1.score;
+	int& stage = objects1.stage;
 
 	int scene = TITLE;
 	while (1) {
@@ -43,7 +58,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 			DrawString(700, HEIGHT * 5 / 6, "ver 0.0.2", WHITE);
 			if (CheckHitKey(KEY_INPUT_S) == 1) { 
 				scene = PLAY;
-				game_start_initialize(user1, bul, ene, ene_bul, score, blo, exp_eff);
+				game_start_initialize(objects1);
 			}
 			break;
 
@@ -51,15 +66,16 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 
 
 			//ユーザーの移動.
-			move_user(user1.x, user1.y);
+			move_user(objects1);
 
 			//ユーザーの描画
-			draw_user(user1.x, user1.y);
+			draw_user(objects1);
 
 			
-			check_block_bullet(bul,blo);
-			draw_block(blo);
+			check_block_bullet(objects1);
+			draw_block(objects1);
 
+			//爆発のエフェクトを描画.
 			draw_explosion(exp_eff);
 
 
@@ -67,9 +83,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 			check_enemy_completed(scene, ene);
 
 			//敵が倒されたかチェック
-			check_enemy(ene, bul, exp_eff, score);
+			check_enemy(objects1);
 
-			//敵の移動
+			//敵の移動.
 			move_enemy(ene, enemy_cycle);
 
 			//敵の描画.
@@ -79,11 +95,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 			draw_explosion(exp_eff);
 
 			//銃弾の移動.
-			bullet_move(bul, BULLET_RAD, WHITE, -20);
+			bullet_move(objects1, BULLET_RAD, -20);
 
-			draw_bullet(bul, BULLET_RAD, WHITE);
+			draw_bullet(objects1, BULLET_RAD, WHITE);
 			//銃弾の生成.
-			bullet_appear(bul, user1.x + 20, user1.y, bullet_cooltime);
+			bullet_appear(objects1);
 			
 			//敵の銃弾の生成.
 			enemy_bullet_appear(ene_bul, ene, enemy_bullet_cooltime);
@@ -94,13 +110,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 			//敵の銃弾の描画.
 			enemy_draw_bullet(ene_bul, BULLET_RAD, ORANGE);
 
-			check_block_enemybullet(ene_bul, blo);
+			check_block_enemybullet(objects1);
 
-			check_user_alive(ene, user1, ene_bul, scene);
+			check_user_alive(objects1, scene);
 
 			draw_score(score);
 
-			draw_hp(user1);
+			draw_hp(objects1);
 
 			SetFontSize(20);
 			DrawString(10, 10, "Hキーを押すと操作方法が表示されます", WHITE);
@@ -125,12 +141,28 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 
 		case CLEAR:
 			SetFontSize(50);
-			DrawString(250, HEIGHT / 2, "ゲームクリア!", WHITE);
-			SetFontSize(20);
-			DrawString(300, HEIGHT * 2 / 3, "Sキーを押すとリスタートします", WHITE);
-			DrawString(300, HEIGHT * 2 / 3 + 40, "Qキーを押すとゲームを終了します", WHITE);
-			if (CheckHitKey(KEY_INPUT_S) == 1) { scene = TITLE; }
-			else if (CheckHitKey(KEY_INPUT_Q) == 1) { scene = END; }
+			if(stage==1){
+				DrawString(300, HEIGHT / 2, "ステージクリア!", WHITE);
+				SetFontSize(20);
+				DrawString(300, HEIGHT * 2 / 3, "Sキーを押すと次のステージへ進みます", WHITE);
+				DrawString(300, HEIGHT * 2 / 3 + 40, "Qキーを押すとゲームを終了します", WHITE);
+				if (CheckHitKey(KEY_INPUT_S) == 1) {
+					scene = PLAY;
+					stage++;
+					game_start_initialize(objects1);
+				}
+				else if (CheckHitKey(KEY_INPUT_Q) == 1) {
+					scene = END;
+				}
+			}
+			else {
+				DrawString(250, HEIGHT / 2, "ゲームクリア!", WHITE);
+				SetFontSize(20);
+				DrawString(300, HEIGHT * 2 / 3, "Sキーを押すとリスタートします", WHITE);
+				DrawString(300, HEIGHT * 2 / 3 + 40, "Qキーを押すとゲームを終了します", WHITE);
+				if (CheckHitKey(KEY_INPUT_S) == 1) { scene = TITLE; }
+				else if (CheckHitKey(KEY_INPUT_Q) == 1) { scene = END; }
+			}
 			break;
 		}
 		ScreenFlip();

@@ -4,6 +4,7 @@
 
 struct bullet;
 struct enemy;
+struct objects;
 
 struct user {
 	int x;
@@ -12,8 +13,8 @@ struct user {
 	int hp;
 };
 
-void draw_user(int x, int y);
-void move_user(int& x, int& y);
-void check_user_alive(vector<enemy>& ene, user& user1, vector<bullet>& ene_bul, int& scene);
-void user_initialize(user& user1); //ユーザー情報を初期化.
-void draw_hp(user user1);
+void draw_user(objects& objects1);
+void move_user(objects& objects1);
+void check_user_alive(objects& objects1, int& scene);
+void user_initialize(objects& objects1); //ユーザー情報を初期化.
+void draw_hp(objects& objects1);

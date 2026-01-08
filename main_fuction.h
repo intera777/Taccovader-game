@@ -9,5 +9,18 @@ struct enemy;
 struct block;
 struct effect;
 
-void game_start_initialize(user& user1, vector<bullet>& bul, vector<enemy>& ene, vector<bullet>& ene_bul, int& score,
-	vector<block>& blo, vector<effect>& exp_eff);
+struct objects {
+	user user1;
+	vector<bullet> bul;
+	vector<enemy> ene;
+	vector<bullet> ene_bul;
+	vector<block> blo;
+	vector<effect> exp_eff;
+	int bullet_cooltime;
+	int enemy_cycle;
+	int enemy_bullet_cooltime;
+	int score;
+	int stage;
+};
+
+void game_start_initialize(objects& objects1);

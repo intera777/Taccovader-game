@@ -1,7 +1,11 @@
 #pragma once
 #include"invadergame2.h"
 
-void bullet_appear(vector<bullet>& vec, int x, int y, int& cooltime) {
+void bullet_appear(objects& objects1) {
+	int& cooltime = objects1.bullet_cooltime;
+	vector<bullet>& vec = objects1.bul;
+	int& x = objects1.user1.x;
+	int& y = objects1.user1.y;
 	if (cooltime > 0) { cooltime--; }
 	else if(CheckHitKey(KEY_INPUT_Z)==1){
 		for (int i = 0; i < MAXBULLETNUM; i++) {
@@ -16,7 +20,8 @@ void bullet_appear(vector<bullet>& vec, int x, int y, int& cooltime) {
 	}
 }
 
-void bullet_move(vector<bullet>& vec, int r, int color, int move_vector) {
+void bullet_move(objects& objects1, int r,int move_vector) {
+	vector<bullet>& vec = objects1.bul;
 	for (int i = 0; i < MAXBULLETNUM; i++) {
 		if (vec.at(i).state == 1) {
 			vec.at(i).y +=move_vector;
@@ -27,7 +32,8 @@ void bullet_move(vector<bullet>& vec, int r, int color, int move_vector) {
 	}
 }
 
-void draw_bullet(vector<bullet>& bul, int r, int color) {
+void draw_bullet(objects objects1, int r, int color) {
+	vector<bullet>bul = objects1.bul;
 	for (int i = 0; i < MAXBULLETNUM; i++) {
 		if (bul.at(i).state == 1) {
 			DrawCircle(bul.at(i).x, bul.at(i).y, r, color, TRUE);
@@ -35,7 +41,8 @@ void draw_bullet(vector<bullet>& bul, int r, int color) {
 	}
 }
 
-void bullet_initialize(vector<bullet>& bul) {
+void bullet_initialize(objects& objects1) {
+	vector<bullet>& bul = objects1.bul;
 	for (int i = 0; i < MAXBULLETNUM; i++) {
 		bul.at(i).x = -100; bul.at(i).y = -100; bul.at(i).state = 0;
 	}
