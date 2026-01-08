@@ -9,6 +9,7 @@
 #include"score.h"
 #include"main_fuction.h"
 #include"effect.h"
+#include"howtooperate.h"
 
 #include<vector>
 #include<cmath>

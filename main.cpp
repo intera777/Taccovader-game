@@ -102,6 +102,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 
 			draw_hp(user1);
 
+			SetFontSize(20);
+			DrawString(10, 10, "Hキーを押すと操作方法が表示されます", WHITE);
+
+			//ここで画面に操作方法を表示する処理.
+			if (CheckHitKey(KEY_INPUT_H) == 1) {
+				draw_howtooperate();
+			}
+
 			if (user1.state == 0) { scene = OVER; }
 			break;
 

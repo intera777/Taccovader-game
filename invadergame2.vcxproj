@@ -139,6 +139,7 @@
     <ClCompile Include="bullet.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="enemy.cpp" />
+    <ClCompile Include="howtooperate.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="main_function.cpp" />
     <ClCompile Include="score.cpp" />
@@ -149,6 +150,7 @@
     <ClInclude Include="bullet.h" />
     <ClInclude Include="effect.h" />
     <ClInclude Include="enemy.h" />
+    <ClInclude Include="howtooperate.h" />
     <ClInclude Include="invadergame2.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="main_fuction.h" />
