@@ -78,7 +78,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 			draw_block(objects1);
 
 			//爆発のエフェクトを描画.
-			draw_explosion(exp_eff);
+			draw_explosion(objects1);
 
 
 			//敵が全て倒されたかチェック.
@@ -94,7 +94,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 			draw_enemy(objects1);
 
 			//敵が倒された時のエフェクトの描画.
-			draw_explosion(exp_eff);
 
 			//銃弾の移動.
 			bullet_move(objects1, BULLET_RAD, -20);
@@ -114,9 +113,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 
 			check_block_enemybullet(objects1);
 
-			check_user_alive(objects1, scene);
+			check_user_alive(objects1);
 
-			draw_score(score);
+			draw_score(objects1);
 
 			draw_hp(objects1);
 

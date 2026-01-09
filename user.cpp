@@ -19,7 +19,8 @@ void move_user(objects& objects1) {
 	}
 }
 
-void check_user_alive(objects& objects1, int& scene) {
+void check_user_alive(objects& objects1) {
+	int& scene = objects1.scene;
 	vector<enemy>& ene = objects1.ene;
 	vector<bullet>& ene_bul = objects1.ene_bul;
 	user& user1 = objects1.user1;
@@ -30,10 +31,10 @@ void check_user_alive(objects& objects1, int& scene) {
 		int ex = ene.at(i).x, ey = ene.at(i).y;
 		//敵が画面下まで迫ってきたとき
 		if (ey + BULLET_RAD > HEIGHT - 140) { user1.hp--; }
-		if (check_user_enemy(ene, user1) == 1) { //敵とユーザーが直接接触していたら終了.
+		if (check_user_enemy(objects1) == 1) { //敵とユーザーが直接接触していたら終了.
 			scene = OVER; break;
 		}
-		if (check_user_enemybullet(ene_bul, user1) == 1) {
+		if (check_user_enemybullet(objects1) == 1) {
 			user1.hp--; break;
 		}
 	}

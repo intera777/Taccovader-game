@@ -15,6 +15,6 @@ struct user {
 
 void draw_user(objects& objects1);
 void move_user(objects& objects1);
-void check_user_alive(objects& objects1, int& scene);
+void check_user_alive(objects& objects1);
 void user_initialize(objects& objects1); //ƒ†[ƒU[î•ñ‚ğ‰Šú‰».
 void draw_hp(objects& objects1);
