@@ -2,7 +2,7 @@
 
 void game_start_initialize(objects& objects1) {
 	user_initialize(objects1);
-	enemy_initialize(objects1.ene);
+	enemy_initialize(objects1);
 	enemy_bullet_initialize(objects1.ene_bul);
 	block_initialize(objects1);
 	bullet_initialize(objects1);

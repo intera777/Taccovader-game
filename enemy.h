@@ -23,9 +23,9 @@ const int ENEMYCYCLE = 150; //“G‚Ì“®‚«‚ÌüŠú;
 const int ENEMYBULLETCOOLTIME = 5; //“G‚ÌUŒ‚‚ÌüŠú.
 
 void check_enemy(objects& objects1); //“G‚Ì¶€‚ğŠm”F.
-void draw_enemy(vector<enemy>& ene); //“G‚ğ•`‰æ.
-void move_enemy(vector<enemy>& ene, int& t); //“G‚ğ“®‚©‚·.
-void enemy_initialize(vector<enemy>& ene);
+void draw_enemy(objects& objects1); //“G‚ğ•`‰æ.
+void move_enemy(objects& objects1); //“G‚ğ“®‚©‚·.
+void enemy_initialize(objects& objects1);
 void check_enemy_completed(int& scene, vector<enemy>& ene); //“G‚ª‘S•”“|‚³‚ê‚½‚©ƒ`ƒFƒbƒN.
 void enemy_bullet_initialize(vector<bullet>& bul); //“G‚Ìe’e‚Ì‰Šú‰»
 void enemy_bullet_appear(vector<bullet>& bul, vector<enemy>& ene, int& cooltime); //“G‚Ìe’e‚ğ¶¬

@@ -86,10 +86,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 			check_enemy(objects1);
 
 			//“G‚ÌˆÚ“®.
-			move_enemy(ene, enemy_cycle);
+			move_enemy(objects1);
 
 			//“G‚Ì•`‰æ.
-			draw_enemy(ene);
+			draw_enemy(objects1);
 
 			//“G‚ª“|‚³‚ê‚½Žž‚ÌƒGƒtƒFƒNƒg‚Ì•`‰æ.
 			draw_explosion(exp_eff);

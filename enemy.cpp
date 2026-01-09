@@ -26,7 +26,8 @@ void check_enemy(objects& objects1) {
 	}
 }
 
-void draw_enemy(vector<enemy>& ene) {
+void draw_enemy(objects& objects1) {
+	vector<enemy>& ene = objects1.ene;
 	int img_enemy = LoadGraph("image/invader1.png");
 	for (int i = 0; i < ENEMYNUM; i++) {
 		if (ene.at(i).state == 1) {
@@ -36,7 +37,9 @@ void draw_enemy(vector<enemy>& ene) {
 	}
 }
 
-void move_enemy(vector<enemy>& ene, int& t) {
+void move_enemy(objects& objects1) {
+	vector<enemy>& ene = objects1.ene;
+	int& t = objects1.enemy_cycle;
 	if (((0 <= t && t < ENEMY_MOVE_SPEED) || (ENEMY_MOVE_SPEED * 5 <= t && t < ENEMY_MOVE_SPEED * 6)) && t % ENEMY_MOVE_COOLTIME == 0) {
 
 		for (int i = 0; i < ENEMYNUM; i++) {
@@ -64,7 +67,9 @@ void move_enemy(vector<enemy>& ene, int& t) {
 		t++;
 	}
 }
-void enemy_initialize(vector<enemy>& ene) {
+
+void enemy_initialize(objects& objects1) {
+	vector<enemy>& ene = objects1.ene;
 	for (int i = 0; i < ENEMYNUM; i++) {
 		ene.at(i).x = 60 * (i % (ENEMYNUM / 2) + 1) + 80;
 		ene.at(i).y = 20 + 40 * (i / (ENEMYNUM / 2));
