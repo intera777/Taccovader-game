@@ -101,7 +101,10 @@ void enemy_bullet_initialize(objects& objects1) {
 	}
 }
 
-void enemy_bullet_appear(vector<bullet>& bul, vector<enemy>& ene, int& cooltime) {
+void enemy_bullet_appear(objects& objects1) {
+	vector<bullet>& bul = objects1.ene_bul;
+	vector<enemy>& ene = objects1.ene;
+	int& cooltime = objects1.enemy_bullet_cooltime;
 	if (cooltime < ENEMYBULLETCOOLTIME) {
 		cooltime++;
 	}
@@ -127,7 +130,8 @@ void enemy_bullet_appear(vector<bullet>& bul, vector<enemy>& ene, int& cooltime)
 
 }
 
-void enemy_bullet_move(vector<bullet>& bul, int r, int move_vector) {
+void enemy_bullet_move(objects& objects1, int r, int move_vector) {
+	vector<bullet>& bul = objects1.ene_bul;
 	for (int i = 0; i < ENEMYNUM; i++) {
 		if (bul.at(i).state == 1) {
 			bul.at(i).y += move_vector;
@@ -140,7 +144,8 @@ void enemy_bullet_move(vector<bullet>& bul, int r, int move_vector) {
 
 
 
-void enemy_draw_bullet(vector<bullet>& bul, int r, int color) {
+void enemy_draw_bullet(objects& objects1, int r, int color) {
+	vector<bullet>& bul = objects1.ene_bul;
 	int img_bullet = LoadGraph("image/enemy_bullet.png");
 	for (int i = 0; i < ENEMYNUM; i++) {
 		if (bul.at(i).state == 1) {

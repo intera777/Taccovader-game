@@ -104,13 +104,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 			bullet_appear(objects1);
 			
 			//“G‚Ìe’e‚Ì¶¬.
-			enemy_bullet_appear(ene_bul, ene, enemy_bullet_cooltime);
+			enemy_bullet_appear(objects1);
 
 			//“G‚Ìe’e‚ÌˆÚ“®.
-			enemy_bullet_move(ene_bul, BULLET_RAD, 20);
+			enemy_bullet_move(objects1, BULLET_RAD, 20);
 
 			//“G‚Ìe’e‚Ì•`‰æ.
-			enemy_draw_bullet(ene_bul, BULLET_RAD, ORANGE);
+			enemy_draw_bullet(objects1, BULLET_RAD, ORANGE);
 
 			check_block_enemybullet(objects1);
 
