@@ -21,6 +21,7 @@ struct objects {
 	int enemy_bullet_cooltime;
 	int score;
 	int stage;
+	int scene;
 };
 
 void game_start_initialize(objects& objects1);

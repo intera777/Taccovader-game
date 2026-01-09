@@ -35,6 +35,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 
 	objects1.score = 0;
 	objects1.stage = 1;//現在のステージ.
+	objects1.scene = TITLE;
 
 	int& bullet_cooltime = objects1.bullet_cooltime;
 	int& enemy_cycle = objects1.enemy_cycle;
@@ -42,7 +43,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 	int& score = objects1.score;
 	int& stage = objects1.stage;
 
-	int scene = TITLE;
+	int& scene = objects1.scene;
+
 	while (1) {
 		ClearDrawScreen();
 
@@ -80,7 +82,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 
 
 			//敵が全て倒されたかチェック.
-			check_enemy_completed(scene, ene);
+			check_enemy_completed(objects1);
 
 			//敵が倒されたかチェック
 			check_enemy(objects1);

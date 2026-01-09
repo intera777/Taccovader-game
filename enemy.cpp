@@ -77,7 +77,10 @@ void enemy_initialize(objects& objects1) {
 	}
  }
 
-void check_enemy_completed(int& scene, vector<enemy>& ene) {
+void check_enemy_completed(objects& objects1) {
+	int& scene = objects1.scene;
+	vector<enemy>& ene = objects1.ene;
+
 	int flag = 1;
 	for (int i = 0; i < ENEMYNUM; i++) {
 		if (ene.at(i).state == 1) {
@@ -89,7 +92,8 @@ void check_enemy_completed(int& scene, vector<enemy>& ene) {
 	}
 }
 
-void enemy_bullet_initialize(vector<bullet>& bul) {
+void enemy_bullet_initialize(objects& objects1) {
+	vector<bullet>& bul = objects1.ene_bul;
 	for (int i = 0; i < ENEMYNUM; i++) {
 		bul.at(i).x = -100;
 		bul.at(i).y = -100;
