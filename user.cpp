@@ -4,8 +4,10 @@
 void draw_user(objects& objects1) {
 	int& x = objects1.user1.x;
 	int& y = objects1.user1.y;
-	DrawBox(x, y, x + 40, y + 40, BLUE, TRUE);
-	DrawBox(x + 10, y, x + 30, y + 20, WHITE, TRUE);
+	int img_user = LoadGraph("image/user.png");
+	DrawGraph(x, y, img_user, FALSE);
+	//DrawBox(x, y, x + 40, y + 40, BLUE, TRUE);
+	//DrawBox(x + 10, y, x + 30, y + 20, WHITE, TRUE);
 }
 
 void move_user(objects& objects1) {

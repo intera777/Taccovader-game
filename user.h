@@ -13,6 +13,8 @@ struct user {
 	int hp;
 };
 
+const int USER_SIZE = 40; //ユーザーのサイズ.
+
 void draw_user(objects& objects1);
 void move_user(objects& objects1);
 void check_user_alive(objects& objects1);

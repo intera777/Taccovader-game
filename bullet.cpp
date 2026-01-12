@@ -11,8 +11,8 @@ void bullet_appear(objects& objects1) {
 		for (int i = 0; i < MAXBULLETNUM; i++) {
 			if (vec.at(i).state == 0) {
 				vec.at(i).state = 1;
-				vec.at(i).x = x;
-				vec.at(i).y = y;
+				vec.at(i).x = x+USER_SIZE/2;
+				vec.at(i).y = y + USER_SIZE / 2;
 				cooltime = BULLET_COOLTIME;
 				break;
 			}
