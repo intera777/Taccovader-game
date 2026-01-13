@@ -11,6 +11,7 @@ void check_enemy(objects& objects1) {
 		for (int j = 0; j < MAXBULLETNUM; j++) {
 			int x2 = bul.at(j).x, y2 = bul.at(j).y;
 			if (((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) <= (ENEMY_RAD + BULLET_RAD) * (ENEMY_RAD + BULLET_RAD)) && ene.at(i).state == 1 && bul.at(j).state == 1) {
+				PlaySoundMem(SE_ENEMY_BEAT, DX_PLAYTYPE_BACK, TRUE);
 				ene.at(i).state = 0;
 
 				bul.at(j).x = -100;
