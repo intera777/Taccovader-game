@@ -10,6 +10,7 @@
 #include"main_fuction.h"
 #include"effect.h"
 #include"howtooperate.h"
+#include"sound.h"
 
 #include<vector>
 #include<cmath>

@@ -45,6 +45,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 
 	int& scene = objects1.scene;
 
+	sound_initialize();
+
 	while (1) {
 		ClearDrawScreen();
 

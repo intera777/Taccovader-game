@@ -14,6 +14,7 @@ void bullet_appear(objects& objects1) {
 				vec.at(i).x = x+USER_SIZE/2;
 				vec.at(i).y = y + USER_SIZE / 2;
 				cooltime = BULLET_COOLTIME;
+				PlaySoundMem(SE_BULLET_SHOOT, DX_PLAYTYPE_BACK, TRUE);
 				break;
 			}
 		}
