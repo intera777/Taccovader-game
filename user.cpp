@@ -37,6 +37,7 @@ void check_user_alive(objects& objects1) {
 			scene = OVER; break;
 		}
 		if (check_user_enemybullet(objects1) == 1) {
+			PlaySoundMem(SE_USER_DAMAGED, DX_PLAYTYPE_BACK, TRUE);
 			user1.hp--; break;
 		}
 	}
