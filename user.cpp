@@ -34,7 +34,8 @@ void check_user_alive(objects& objects1) {
 		//敵が画面下まで迫ってきたとき
 		if (ey + BULLET_RAD > HEIGHT - 140) { user1.hp--; }
 		if (check_user_enemy(objects1) == 1) { //敵とユーザーが直接接触していたら終了.
-			scene = OVER; break;
+			user1.hp = 0;
+			break;
 		}
 		if (check_user_enemybullet(objects1) == 1) {
 			PlaySoundMem(SE_USER_DAMAGED, DX_PLAYTYPE_BACK, TRUE);
@@ -42,6 +43,8 @@ void check_user_alive(objects& objects1) {
 		}
 	}
 	if (user1.hp <= 0) {
+		StopSoundMem(SE_USER_DAMAGED);
+		PlaySoundMem(BGM_GAMEOVER, DX_PLAYTYPE_BACK, TRUE);
 		scene = OVER;
 	}
 }
