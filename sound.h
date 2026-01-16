@@ -7,5 +7,6 @@ extern int SE_ENEMY_BEAT; //敵撃破音.
 extern int SE_USER_DAMAGED; //ユーザー被弾音.
 extern int BGM_GAMEOVER; //ゲームオーバーBGM.
 extern int BGM_STAGE1; //ステージ1BGM.
+extern int BGM_GAMECLEAR; //ゲームクリアBGM.
 
 void sound_initialize();

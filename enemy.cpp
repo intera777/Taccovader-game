@@ -91,6 +91,7 @@ void check_enemy_completed(objects& objects1) {
 	if (flag == 1) {
 		scene = CLEAR;
 		StopSoundMem(BGM_STAGE1);
+		PlaySoundMem(BGM_GAMECLEAR, DX_PLAYTYPE_BACK, TRUE);
 	}
 }
 
