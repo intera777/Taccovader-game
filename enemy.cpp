@@ -79,7 +79,6 @@ void enemy_initialize(objects& objects1) {
  }
 
 void check_enemy_completed(objects& objects1) {
-	int& scene = objects1.scene;
 	vector<enemy>& ene = objects1.ene;
 
 	int flag = 1;
@@ -89,9 +88,7 @@ void check_enemy_completed(objects& objects1) {
 		}
 	}
 	if (flag == 1) {
-		scene = CLEAR;
-		StopSoundMem(BGM_STAGE1);
-		PlaySoundMem(BGM_GAMECLEAR, DX_PLAYTYPE_BACK, TRUE);
+		scene_change(CLEAR, objects1);
 	}
 }
 

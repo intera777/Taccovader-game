@@ -7,6 +7,7 @@ int SE_USER_DAMAGED; //ユーザー被弾音.
 int BGM_GAMEOVER; //ゲームオーバーBGM.
 int BGM_STAGE1; //通常ステージBGM.
 int BGM_GAMECLEAR; //ゲームクリアBGM.
+int BGM_TITLE; //タイトル画面BGM.
 
 void sound_initialize() {
 	SE_BULLET_SHOOT = LoadSoundMem("sound/bullet_shoot.mp3"); //弾発射音.
@@ -15,6 +16,7 @@ void sound_initialize() {
 	BGM_GAMEOVER = LoadSoundMem("sound/gameover.wav"); //ゲームオーバーBGM.
 	BGM_STAGE1 = LoadSoundMem("sound/normal.mp3"); //ステージ1BGM.
 	BGM_GAMECLEAR = LoadSoundMem("sound/gameclear.mp3"); //ゲームクリアBGM.
+	BGM_TITLE = LoadSoundMem("sound/title.mp3"); //タイトル画面BGM.
 
 	ChangeVolumeSoundMem(100, SE_ENEMY_BEAT);
 	ChangeVolumeSoundMem(50, SE_BULLET_SHOOT);
@@ -22,10 +24,15 @@ void sound_initialize() {
 	ChangeVolumeSoundMem(80, BGM_GAMEOVER);
 	ChangeVolumeSoundMem(70, BGM_STAGE1);
 	ChangeVolumeSoundMem(70, BGM_GAMECLEAR);
+	ChangeVolumeSoundMem(70, BGM_TITLE);
 }
 
 void stop_allbgm() {
 	StopSoundMem(BGM_GAMECLEAR);
 	StopSoundMem(BGM_STAGE1);
 	StopSoundMem(BGM_GAMEOVER);
+	StopSoundMem(SE_ENEMY_BEAT);
+	StopSoundMem(SE_BULLET_SHOOT);
+	StopSoundMem(SE_USER_DAMAGED);
+	StopSoundMem(BGM_TITLE);
 }

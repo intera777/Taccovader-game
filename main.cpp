@@ -35,7 +35,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 
 	objects1.score = 0;
 	objects1.stage = 1;//現在のステージ.
-	objects1.scene = TITLE;
 
 	int& bullet_cooltime = objects1.bullet_cooltime;
 	int& enemy_cycle = objects1.enemy_cycle;
@@ -46,6 +45,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 	int& scene = objects1.scene;
 
 	sound_initialize();
+
+	scene_change(TITLE, objects1);
 
 	while (1) {
 		ClearDrawScreen();
@@ -63,6 +64,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 			if (CheckHitKey(KEY_INPUT_S) == 1) { 
 				scene = PLAY;
 				game_start_initialize(objects1);
+				stop_allbgm();
 				PlaySoundMem(BGM_STAGE1, DX_PLAYTYPE_BACK | DX_PLAYTYPE_LOOP, TRUE);
 			}
 			break;
@@ -132,7 +134,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 
 			if (user1.state == 0) {
 				scene = OVER;
-				StopSoundMem(BGM_STAGE1);
+				stop_allbgm();
 			}
 			break;
 
@@ -142,8 +144,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 			SetFontSize(20);
 			DrawString(300, HEIGHT * 2 / 3, "Sキーを押すとリスタートします", WHITE);
 			DrawString(300, HEIGHT * 2 / 3 + 40, "Qキーを押すとゲームを終了します", WHITE);
-			if (CheckHitKey(KEY_INPUT_S) == 1) { scene = TITLE;}
-			else if (CheckHitKey(KEY_INPUT_Q) == 1) { scene = END; }
+			if (CheckHitKey(KEY_INPUT_S) == 1) { 
+				scene = TITLE;
+				stop_allbgm();
+			}
+			else if (CheckHitKey(KEY_INPUT_Q) == 1) {
+				scene = END;
+				stop_allbgm();
+			}
 			break;
 
 		case CLEAR:
@@ -167,8 +175,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 				SetFontSize(20);
 				DrawString(300, HEIGHT * 2 / 3, "Sキーを押すとリスタートします", WHITE);
 				DrawString(300, HEIGHT * 2 / 3 + 40, "Qキーを押すとゲームを終了します", WHITE);
-				if (CheckHitKey(KEY_INPUT_S) == 1) { scene = TITLE; }
-				else if (CheckHitKey(KEY_INPUT_Q) == 1) { scene = END; }
+				if (CheckHitKey(KEY_INPUT_S) == 1) { 
+					scene = TITLE;
+					stop_allbgm();
+				}
+				else if (CheckHitKey(KEY_INPUT_Q) == 1) {
+					scene = END;
+					stop_allbgm();
+				}
 			}
 			break;
 		}

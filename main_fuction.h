@@ -25,3 +25,4 @@ struct objects {
 };
 
 void game_start_initialize(objects& objects1);
+void scene_change(int s, objects& objects1);
