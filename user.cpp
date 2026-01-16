@@ -43,10 +43,7 @@ void check_user_alive(objects& objects1) {
 		}
 	}
 	if (user1.hp <= 0) {
-		StopSoundMem(SE_USER_DAMAGED);
-		scene = OVER;
-		stop_allbgm();
-		PlaySoundMem(BGM_GAMEOVER, DX_PLAYTYPE_BACK, TRUE);
+		scene_change(OVER, objects1);
 	}
 }
 

@@ -62,10 +62,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 			DrawString(250, HEIGHT * 3 / 4, "右移動:L 左移動:J 弾発射: Z", WHITE);
 			DrawString(700, HEIGHT * 5 / 6, "ver 0.0.2", WHITE);
 			if (CheckHitKey(KEY_INPUT_S) == 1) { 
-				scene = PLAY;
+				scene_change(PLAY, objects1);
 				game_start_initialize(objects1);
-				stop_allbgm();
-				PlaySoundMem(BGM_STAGE1, DX_PLAYTYPE_BACK | DX_PLAYTYPE_LOOP, TRUE);
 			}
 			break;
 
@@ -133,8 +131,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 			}
 
 			if (user1.state == 0) {
-				scene = OVER;
-				stop_allbgm();
+				scene_change(OVER, objects1);
 			}
 			break;
 
@@ -145,12 +142,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 			DrawString(300, HEIGHT * 2 / 3, "Sキーを押すとリスタートします", WHITE);
 			DrawString(300, HEIGHT * 2 / 3 + 40, "Qキーを押すとゲームを終了します", WHITE);
 			if (CheckHitKey(KEY_INPUT_S) == 1) { 
-				scene = TITLE;
-				stop_allbgm();
+				scene_change(TITLE, objects1);
 			}
 			else if (CheckHitKey(KEY_INPUT_Q) == 1) {
-				scene = END;
-				stop_allbgm();
+				scene_change(END, objects1);
 			}
 			break;
 
@@ -162,12 +157,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 				DrawString(300, HEIGHT * 2 / 3, "Sキーを押すと次のステージへ進みます", WHITE);
 				DrawString(300, HEIGHT * 2 / 3 + 40, "Qキーを押すとゲームを終了します", WHITE);
 				if (CheckHitKey(KEY_INPUT_S) == 1) {
-					scene = PLAY;
+					scene_change(PLAY, objects1);
 					stage++;
 					game_start_initialize(objects1);
 				}
 				else if (CheckHitKey(KEY_INPUT_Q) == 1) {
-					scene = END;
+					scene_change(END, objects1);
 				}
 			}
 			else {
@@ -176,12 +171,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 				DrawString(300, HEIGHT * 2 / 3, "Sキーを押すとリスタートします", WHITE);
 				DrawString(300, HEIGHT * 2 / 3 + 40, "Qキーを押すとゲームを終了します", WHITE);
 				if (CheckHitKey(KEY_INPUT_S) == 1) { 
-					scene = TITLE;
-					stop_allbgm();
+					scene_change(TITLE, objects1);
 				}
 				else if (CheckHitKey(KEY_INPUT_Q) == 1) {
-					scene = END;
-					stop_allbgm();
+					scene_change(END, objects1);
 				}
 			}
 			break;
