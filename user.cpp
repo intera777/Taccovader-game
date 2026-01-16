@@ -46,6 +46,7 @@ void check_user_alive(objects& objects1) {
 		StopSoundMem(SE_USER_DAMAGED);
 		PlaySoundMem(BGM_GAMEOVER, DX_PLAYTYPE_BACK, TRUE);
 		scene = OVER;
+		StopSoundMem(BGM_STAGE1);
 	}
 }
 

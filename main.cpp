@@ -130,7 +130,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 				draw_howtooperate();
 			}
 
-			if (user1.state == 0) { scene = OVER; }
+			if (user1.state == 0) {
+				scene = OVER;
+				StopSoundMem(BGM_STAGE1);
+			}
 			break;
 
 		case OVER:

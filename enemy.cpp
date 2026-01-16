@@ -90,6 +90,7 @@ void check_enemy_completed(objects& objects1) {
 	}
 	if (flag == 1) {
 		scene = CLEAR;
+		StopSoundMem(BGM_STAGE1);
 	}
 }
 
