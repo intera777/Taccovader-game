@@ -63,6 +63,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 			if (CheckHitKey(KEY_INPUT_S) == 1) { 
 				scene = PLAY;
 				game_start_initialize(objects1);
+				PlaySoundMem(BGM_STAGE1, DX_PLAYTYPE_BACK | DX_PLAYTYPE_LOOP, TRUE);
 			}
 			break;
 
