@@ -22,6 +22,7 @@ struct objects {
 	int score;
 	int stage;
 	int scene;
+	int current_background;
 };
 
 void game_start_initialize(objects& objects1);

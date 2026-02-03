@@ -16,3 +16,4 @@
 #include<vector>
 #include<cmath>
 #include<random>
+#include<iostream>

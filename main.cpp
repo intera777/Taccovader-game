@@ -46,6 +46,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 
 	sound_initialize();
 
+	background_initialize();
+
 	scene_change(TITLE, objects1);
 
 	while (1) {

@@ -1,5 +1,6 @@
 #include"invadergame2.h"
 
+//メインプレイ再開時の初期化.
 void game_start_initialize(objects& objects1) {
 	user_initialize(objects1);
 	enemy_initialize(objects1);
@@ -8,6 +9,7 @@ void game_start_initialize(objects& objects1) {
 	bullet_initialize(objects1);
 	effect_initialize(objects1, ENEMYNUM);
 	objects1.score = 0;
+	change_background(objects1);
 }
 
 void scene_change(int s, objects& objects1) { //引数は変更先のシーン.
