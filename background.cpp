@@ -28,8 +28,8 @@ void background_initialize() {
 	BACK10 = LoadGraph("image/back10.png");
 }
 
-void draw_background() {
-	int img_background = LoadGraph("image/background.png");
+void draw_background(objects& objects1) {
+	int img_background = objects1.current_background;
 	DrawGraph(0, 0, img_background, FALSE);
 }
 

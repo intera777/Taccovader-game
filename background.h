@@ -13,5 +13,5 @@ extern int BACK9;
 extern int BACK10;
 
 void background_initialize();
-void draw_background();
+void draw_background(objects& objects1);
 void change_background(objects& objects1);

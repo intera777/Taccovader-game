@@ -71,7 +71,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 
 		case PLAY:
 
-
+			draw_background(objects1);
 			//ƒ†[ƒU[‚ÌˆÚ“®.
 			move_user(objects1);
 
