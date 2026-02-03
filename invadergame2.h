@@ -11,6 +11,7 @@
 #include"effect.h"
 #include"howtooperate.h"
 #include"sound.h"
+#include"background.h"
 
 #include<vector>
 #include<cmath>
