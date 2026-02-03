@@ -6,7 +6,7 @@ void draw_explosion(objects& objects1){
 	int img_explosion = LoadGraph("image/explosion.png");
 	for (int i = 0; i < ENEMYNUM; i++) {
 		if (eff.at(i).time > 0) {
-			DrawGraph(eff.at(i).x, eff.at(i).y, img_explosion, FALSE);
+			DrawGraph(eff.at(i).x, eff.at(i).y, img_explosion, TRUE);
 			eff.at(i).time--;
 		}
 	}

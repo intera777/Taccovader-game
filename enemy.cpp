@@ -32,7 +32,7 @@ void draw_enemy(objects& objects1) {
 	int img_enemy = LoadGraph("image/invader1.png");
 	for (int i = 0; i < ENEMYNUM; i++) {
 		if (ene.at(i).state == 1) {
-			DrawGraph(ene.at(i).x - 10, ene.at(i).y - 10, img_enemy, FALSE);
+			DrawGraph(ene.at(i).x - 10, ene.at(i).y - 10, img_enemy, TRUE);
 			//DrawCircle(ene.at(i).x, ene.at(i).y, ENEMY_RAD, RED, TRUE);
 		}
 	}
