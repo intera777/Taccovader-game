@@ -153,14 +153,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 
 		case CLEAR:
 			SetFontSize(50);
-			if(stage==1){
+			if(stage==2){
 				DrawString(300, HEIGHT / 2, "ステージクリア!", WHITE);
 				SetFontSize(20);
 				DrawString(300, HEIGHT * 2 / 3, "Sキーを押すと次のステージへ進みます", WHITE);
 				DrawString(300, HEIGHT * 2 / 3 + 40, "Qキーを押すとゲームを終了します", WHITE);
 				if (CheckHitKey(KEY_INPUT_S) == 1) {
 					scene_change(PLAY, objects1);
-					stage++;
 					game_start_initialize(objects1);
 				}
 				else if (CheckHitKey(KEY_INPUT_Q) == 1) {

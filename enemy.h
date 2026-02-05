@@ -9,8 +9,8 @@ struct effect;
 struct objects;
 
 struct enemy {
-	int x;
-	int y;
+	double x;
+	double y;
 	int state;
 };
 

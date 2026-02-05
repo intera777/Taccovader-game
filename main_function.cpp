@@ -14,16 +14,23 @@ void game_start_initialize(objects& objects1) {
 
 void scene_change(int s, objects& objects1) { //à¯êîÇÕïœçXêÊÇÃÉVÅ[Éì.
 	stop_allbgm();
-	objects1.scene = s;
+	int& stage = objects1.stage;
 	if (s == TITLE) {
 		PlaySoundMem(BGM_TITLE, DX_PLAYTYPE_BACK, TRUE);
+		stage = 1;
 	}
 	else if (s == PLAY) {
 		PlaySoundMem(BGM_STAGE1, DX_PLAYTYPE_BACK | DX_PLAYTYPE_LOOP, TRUE);
+		if (objects1.scene != CLEAR) {
+			stage = 1;
+		}
 	}
 	else if (s == CLEAR) {
 		PlaySoundMem(BGM_GAMECLEAR, DX_PLAYTYPE_BACK, TRUE);
+		stage++;
 	} else if (s == OVER) {
 		PlaySoundMem(BGM_GAMEOVER, DX_PLAYTYPE_BACK, TRUE);
+		stage = 1;
 	}
+	objects1.scene = s;
 }

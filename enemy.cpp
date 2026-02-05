@@ -77,8 +77,13 @@ void move_enemy(objects& objects1) {
 	case 2: {
 		for (int i = 0; i < ENEMYNUM; i++) {
 			if (ene.at(i).state == 1) {
-				ene.at(i).y += 1;
-				ene.at(i).x -= ene.at(i).y / 600 + ENEMY_MOVE_COOLTIME;
+				ene.at(i).y += 0.5;
+				if (i < ENEMYNUM / 2) {
+					ene.at(i).x -= double(ene.at(i).y) / 600 + ENEMY_MOVE_COOLTIME;
+				}
+				else {
+					ene.at(i).x -= double(ene.at(i).y) / 600 + ENEMY_MOVE_COOLTIME * 2;
+				}
 				if (ene.at(i).x < 0) {
 					ene.at(i).x = WIDTH;
 				}
@@ -89,15 +94,15 @@ void move_enemy(objects& objects1) {
 
 	default:
 		break;
-			
+
 	}
 }
 
 void enemy_initialize(objects& objects1) {
 	int stage = objects1.stage;
 	switch (stage) {
-	case 1:{
-		vector<enemy>&ene = objects1.ene;
+	case 1: {
+		vector<enemy>& ene = objects1.ene;
 		for (int i = 0; i < ENEMYNUM; i++) {
 			ene.at(i).x = 60 * (i % (ENEMYNUM / 2) + 1) + 80;
 			ene.at(i).y = 20 + 40 * (i / (ENEMYNUM / 2));
@@ -118,7 +123,7 @@ void enemy_initialize(objects& objects1) {
 	default:
 		break;
 	}
- }
+}
 
 void check_enemy_completed(objects& objects1) {
 	vector<enemy>& ene = objects1.ene;
@@ -232,7 +237,7 @@ int check_user_enemy(objects& objects1) {
 
 		//ìGÇ™â°Ç…Ç¢ÇÈÇ∆Ç´.
 		if (ey >= HEIGHT - 40 && ux - ex <= ENEMY_RAD && ux - ex >= -(40 + ENEMY_RAD)) {
-			 return 1;
+			return 1;
 		} //ìGÇ™è„Ç…Ç¢ÇÈÇ∆Ç´;
 		else if (ux - ex <= ENEMY_RAD && ux - ex >= -(40 + ENEMY_RAD) && uy - ey <= ENEMY_RAD) {
 			return 1;
