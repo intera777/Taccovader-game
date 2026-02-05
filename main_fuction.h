@@ -20,9 +20,9 @@ struct objects {
 	int enemy_cycle;
 	int enemy_bullet_cooltime;
 	int score;
-	int stage;
-	int scene;
-	int current_background;
+	int stage; //現在のステージ.
+	int scene; //現在のゲームモード.
+	int current_background; // 現在の背景画像のID.
 };
 
 void game_start_initialize(objects& objects1);

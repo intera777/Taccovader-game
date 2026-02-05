@@ -40,41 +40,83 @@ void draw_enemy(objects& objects1) {
 
 void move_enemy(objects& objects1) {
 	vector<enemy>& ene = objects1.ene;
-	int& t = objects1.enemy_cycle;
-	if (((0 <= t && t < ENEMY_MOVE_SPEED) || (ENEMY_MOVE_SPEED * 5 <= t && t < ENEMY_MOVE_SPEED * 6)) && t % ENEMY_MOVE_COOLTIME == 0) {
+	int stage = objects1.stage;
+	int speed = ENEMY_MOVE_SPEED;
 
-		for (int i = 0; i < ENEMYNUM; i++) {
-			ene.at(i).x -= ENEMY_MOVE_COOLTIME;
-		}
-		if (t == ENEMY_MOVE_SPEED * 6 - 1) {
-			t = 0;
-		}
-		else {
-			t++;
-		}
-	}
-	else if (((ENEMY_MOVE_SPEED <= t && t < ENEMY_MOVE_SPEED * 2) || (ENEMY_MOVE_SPEED * 4 <= t && t < ENEMY_MOVE_SPEED * 5)) && t % ENEMY_MOVE_COOLTIME == 0) {
-		if (t % 2 == 0) {
+	switch (stage) {
+	case 1: {
+		int& t = objects1.enemy_cycle;
+		if (((0 <= t && t < speed) || (speed * 5 <= t && t < speed * 6)) && t % ENEMY_MOVE_COOLTIME == 0) {
+
 			for (int i = 0; i < ENEMYNUM; i++) {
-				ene.at(i).y += max(ENEMY_MOVE_COOLTIME / 2, 1);
+				ene.at(i).x -= ENEMY_MOVE_COOLTIME;
+			}
+			if (t == speed * 6 - 1) {
+				t = 0;
+			}
+			else {
+				t++;
 			}
 		}
-		t++;
-	}
-	else if (ENEMY_MOVE_SPEED * 2 <= t && t < ENEMY_MOVE_SPEED * 4) {
-		for (int i = 0; i < ENEMYNUM; i++) {
-			ene.at(i).x += ENEMY_MOVE_COOLTIME;
+		else if (((speed <= t && t < speed * 2) || (speed * 4 <= t && t < speed * 5)) && t % ENEMY_MOVE_COOLTIME == 0) {
+			if (t % 2 == 0) {
+				for (int i = 0; i < ENEMYNUM; i++) {
+					ene.at(i).y += max(ENEMY_MOVE_COOLTIME / 2, 1);
+				}
+			}
+			t++;
 		}
-		t++;
+		else if (speed * 2 <= t && t < speed * 4) {
+			for (int i = 0; i < ENEMYNUM; i++) {
+				ene.at(i).x += ENEMY_MOVE_COOLTIME;
+			}
+			t++;
+		}
+		break;
+	}
+	case 2: {
+		for (int i = 0; i < ENEMYNUM; i++) {
+			if (ene.at(i).state == 1) {
+				ene.at(i).y += 1;
+				ene.at(i).x -= ene.at(i).y / 600 + ENEMY_MOVE_COOLTIME;
+				if (ene.at(i).x < 0) {
+					ene.at(i).x = WIDTH;
+				}
+			}
+		}
+		break;
+	}
+
+	default:
+		break;
+			
 	}
 }
 
 void enemy_initialize(objects& objects1) {
-	vector<enemy>& ene = objects1.ene;
-	for (int i = 0; i < ENEMYNUM; i++) {
-		ene.at(i).x = 60 * (i % (ENEMYNUM / 2) + 1) + 80;
-		ene.at(i).y = 20 + 40 * (i / (ENEMYNUM / 2));
-		ene.at(i).state = 1;
+	int stage = objects1.stage;
+	switch (stage) {
+	case 1:{
+		vector<enemy>&ene = objects1.ene;
+		for (int i = 0; i < ENEMYNUM; i++) {
+			ene.at(i).x = 60 * (i % (ENEMYNUM / 2) + 1) + 80;
+			ene.at(i).y = 20 + 40 * (i / (ENEMYNUM / 2));
+			ene.at(i).state = 1;
+		}
+		break;
+	}
+	case 2: {
+		vector<enemy>& ene2 = objects1.ene;
+		for (int i = 0; i < ENEMYNUM; i++) {
+			ene2.at(i).x = 60 * (i % (ENEMYNUM / 2) + 1) + 80;
+			ene2.at(i).y = 20 + 30 * (i / (ENEMYNUM / 2));
+			ene2.at(i).state = 1;
+		}
+		break;
+	}
+
+	default:
+		break;
 	}
  }
 
