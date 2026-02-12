@@ -12,6 +12,7 @@
 #include"howtooperate.h"
 #include"sound.h"
 #include"background.h"
+#include"sentence.h"
 
 #include<vector>
 #include<cmath>

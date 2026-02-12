@@ -13,13 +13,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 
 	objects objects1;
 
-	user& user1=objects1.user1; //ユーザーの情報を持つ構造体.
-	vector<bullet>& bul=objects1.bul; //弾の情報を持つ構造体の配列.
-	vector<bullet>& ene_bul=objects1.ene_bul; //敵が撃つ弾の情報を持つ構造体の配列.
-	vector<enemy>& ene=objects1.ene; //敵の情報を持つ構造体の配列.
-	vector<block>& blo=objects1.blo; //ブロックの情報を持つ構造体の配列.
-	vector<effect>& exp_eff=objects1.exp_eff; //敵が倒された時のエフェクトの情報を持つ構造体.
-	
+	user& user1 = objects1.user1; //ユーザーの情報を持つ構造体.
+	vector<bullet>& bul = objects1.bul; //弾の情報を持つ構造体の配列.
+	vector<bullet>& ene_bul = objects1.ene_bul; //敵が撃つ弾の情報を持つ構造体の配列.
+	vector<enemy>& ene = objects1.ene; //敵の情報を持つ構造体の配列.
+	vector<block>& blo = objects1.blo; //ブロックの情報を持つ構造体の配列.
+	vector<effect>& exp_eff = objects1.exp_eff; //敵が倒された時のエフェクトの情報を持つ構造体.
+
 	//配列の大きさを指定.
 	bul.resize(MAXBULLETNUM);
 	ene_bul.resize(ENEMYNUM);
@@ -30,7 +30,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 	objects1.bullet_cooltime = 0; //再び銃弾が発射可能になるまでの時間.
 
 	//敵関係の定数
-	objects1.enemy_cycle= 0; //敵の動きが一周したらリセット.
+	objects1.enemy_cycle = 0; //敵の動きが一周したらリセット.
 	objects1.enemy_bullet_cooltime = 0;
 
 	objects1.score = 0;
@@ -48,6 +48,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 
 	background_initialize();
 
+	sentence_initialize();
+
 	scene_change(TITLE, objects1);
 
 	while (1) {
@@ -56,18 +58,17 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 		if (scene == END) { break; }
 		switch (scene) {
 
-		case TITLE:
-			SetFontSize(50);
-			DrawString(200, HEIGHT / 2, "TACCOVADER GAME", WHITE, FONT_TITLE);
-			SetFontSize(20);
-			DrawString(250, HEIGHT * 2 / 3, "Sキーを押すとゲームを開始します", WHITE);
-			DrawString(250, HEIGHT * 3 / 4, "右移動:L 左移動:J 弾発射: Z", WHITE);
-			DrawString(700, HEIGHT * 5 / 6, "ver 0.0.2", WHITE);
-			if (CheckHitKey(KEY_INPUT_S) == 1) { 
+		case TITLE: {
+			DrawStringToHandle(200, HEIGHT / 2, "TACCOVADER GAME", WHITE, FONT_TITLE);
+			DrawStringToHandle(250, HEIGHT * 2 / 3, "Sキーを押すとゲームを開始します", WHITE, FONT_TITLE_SMALL);
+			DrawStringToHandle(250, HEIGHT * 3 / 4, "右移動:L 左移動:J 弾発射: Z", WHITE, FONT_TITLE_SMALL);
+			DrawStringToHandle(700, HEIGHT * 5 / 6, "ver 0.0.2", WHITE, FONT_TITLE_SMALL);
+			if (CheckHitKey(KEY_INPUT_S) == 1) {
 				scene_change(PLAY, objects1);
 				game_start_initialize(objects1);
 			}
 			break;
+		}
 
 		case PLAY:
 
@@ -78,7 +79,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 			//ユーザーの描画
 			draw_user(objects1);
 
-			
+
 			check_block_bullet(objects1);
 			draw_block(objects1);
 
@@ -106,7 +107,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 			draw_bullet(objects1, BULLET_RAD, WHITE);
 			//銃弾の生成.
 			bullet_appear(objects1);
-			
+
 			//敵の銃弾の生成.
 			enemy_bullet_appear(objects1);
 
@@ -143,7 +144,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 			SetFontSize(20);
 			DrawString(300, HEIGHT * 2 / 3, "Sキーを押すとリスタートします", WHITE);
 			DrawString(300, HEIGHT * 2 / 3 + 40, "Qキーを押すとゲームを終了します", WHITE);
-			if (CheckHitKey(KEY_INPUT_S) == 1) { 
+			if (CheckHitKey(KEY_INPUT_S) == 1) {
 				scene_change(TITLE, objects1);
 			}
 			else if (CheckHitKey(KEY_INPUT_Q) == 1) {
@@ -153,7 +154,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 
 		case CLEAR:
 			SetFontSize(50);
-			if(stage==2){
+			if (stage == 2) {
 				DrawString(300, HEIGHT / 2, "ステージクリア!", WHITE);
 				SetFontSize(20);
 				DrawString(300, HEIGHT * 2 / 3, "Sキーを押すと次のステージへ進みます", WHITE);
@@ -171,7 +172,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 				SetFontSize(20);
 				DrawString(300, HEIGHT * 2 / 3, "Sキーを押すとリスタートします", WHITE);
 				DrawString(300, HEIGHT * 2 / 3 + 40, "Qキーを押すとゲームを終了します", WHITE);
-				if (CheckHitKey(KEY_INPUT_S) == 1) { 
+				if (CheckHitKey(KEY_INPUT_S) == 1) {
 					scene_change(TITLE, objects1);
 				}
 				else if (CheckHitKey(KEY_INPUT_Q) == 1) {

@@ -26,5 +26,3 @@ using std::vector;
 
 enum { TITLE, PLAY, MENU, CLEAR, OVER, END };
 
-const int FONT_TITLE = CreateFontToHandle("Arial Black", 40, 3, DX_FONTTYPE_ANTIALIASING_8X8);
-
