@@ -4,6 +4,8 @@ int FONT_TITLE;
 int FONT_TITLE_SMALL;
 
 void sentence_initialize() {
-	FONT_TITLE = CreateFontToHandle("Calibri", 70, 10, DX_FONTTYPE_ANTIALIASING_8X8);
-	FONT_TITLE_SMALL = CreateFontToHandle("Calibri", 20, 10, DX_FONTTYPE_ANTIALIASING_8X8);
+	AddFontResourceEx("font/Michroma-Regular.ttf", FR_PRIVATE, 0);
+
+	FONT_TITLE = CreateFontToHandle("Michroma", 50, 10, DX_FONTTYPE_ANTIALIASING_8X8);
+	FONT_TITLE_SMALL = CreateFontToHandle("HGPºÞ¼¯¸E", 20, 10, DX_FONTTYPE_ANTIALIASING_8X8);
 }

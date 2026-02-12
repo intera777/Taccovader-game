@@ -59,7 +59,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 		switch (scene) {
 
 		case TITLE: {
-			DrawStringToHandle(200, HEIGHT / 2, "TACCOVADER GAME", WHITE, FONT_TITLE);
+			DrawStringToHandle(100, HEIGHT / 3, "TACCOVADER GAME", WHITE, FONT_TITLE);
 			DrawStringToHandle(250, HEIGHT * 2 / 3, "Sキーを押すとゲームを開始します", WHITE, FONT_TITLE_SMALL);
 			DrawStringToHandle(250, HEIGHT * 3 / 4, "右移動:L 左移動:J 弾発射: Z", WHITE, FONT_TITLE_SMALL);
 			DrawStringToHandle(700, HEIGHT * 5 / 6, "ver 0.0.2", WHITE, FONT_TITLE_SMALL);
@@ -139,11 +139,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 			break;
 
 		case OVER:
-			SetFontSize(50);
-			DrawString(250, HEIGHT / 2, "ゲームオーバー", WHITE);
-			SetFontSize(20);
-			DrawString(300, HEIGHT * 2 / 3, "Sキーを押すとリスタートします", WHITE);
-			DrawString(300, HEIGHT * 2 / 3 + 40, "Qキーを押すとゲームを終了します", WHITE);
+			DrawStringToHandle(250, HEIGHT / 2, "GAME OVER!", WHITE, FONT_TITLE);
+			DrawStringToHandle(300, HEIGHT * 2 / 3, "Sキーを押すとリスタートします", WHITE, FONT_TITLE_SMALL);
+			DrawStringToHandle(300, HEIGHT * 2 / 3 + 40, "Qキーを押すとゲームを終了します", WHITE, FONT_TITLE_SMALL);
 			if (CheckHitKey(KEY_INPUT_S) == 1) {
 				scene_change(TITLE, objects1);
 			}
@@ -153,12 +151,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 			break;
 
 		case CLEAR:
-			SetFontSize(50);
 			if (stage == 2) {
-				DrawString(300, HEIGHT / 2, "ステージクリア!", WHITE);
-				SetFontSize(20);
-				DrawString(300, HEIGHT * 2 / 3, "Sキーを押すと次のステージへ進みます", WHITE);
-				DrawString(300, HEIGHT * 2 / 3 + 40, "Qキーを押すとゲームを終了します", WHITE);
+				DrawStringToHandle(300, HEIGHT / 2, "STAGE CLEAR!", WHITE,FONT_TITLE);
+				DrawStringToHandle(300, HEIGHT * 2 / 3, "Sキーを押すと次のステージへ進みます", WHITE, FONT_TITLE_SMALL);
+				DrawStringToHandle(300, HEIGHT * 2 / 3 + 40, "Qキーを押すとゲームを終了します", WHITE, FONT_TITLE_SMALL);
 				if (CheckHitKey(KEY_INPUT_S) == 1) {
 					scene_change(PLAY, objects1);
 					game_start_initialize(objects1);
