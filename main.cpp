@@ -58,7 +58,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 
 		case TITLE:
 			SetFontSize(50);
-			DrawString(200, HEIGHT / 2, "インベーダーゲーム(仮)", WHITE);
+			DrawString(200, HEIGHT / 2, "TACCOVADER GAME", WHITE, FONT_TITLE);
 			SetFontSize(20);
 			DrawString(250, HEIGHT * 2 / 3, "Sキーを押すとゲームを開始します", WHITE);
 			DrawString(250, HEIGHT * 3 / 4, "右移動:L 左移動:J 弾発射: Z", WHITE);
