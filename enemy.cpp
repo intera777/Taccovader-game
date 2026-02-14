@@ -49,7 +49,7 @@ void move_enemy(objects& objects1) {
 		if (((0 <= t && t < speed) || (speed * 5 <= t && t < speed * 6)) && t % ENEMY_MOVE_COOLTIME == 0) {
 
 			for (int i = 0; i < ENEMYNUM; i++) {
-				ene.at(i).x -= ENEMY_MOVE_COOLTIME;
+				ene.at(i).x -= ENEMY_MOVE_COOLTIME*1.1;
 			}
 			if (t == speed * 6 - 1) {
 				t = 0;
@@ -68,7 +68,7 @@ void move_enemy(objects& objects1) {
 		}
 		else if (speed * 2 <= t && t < speed * 4) {
 			for (int i = 0; i < ENEMYNUM; i++) {
-				ene.at(i).x += ENEMY_MOVE_COOLTIME;
+				ene.at(i).x += ENEMY_MOVE_COOLTIME*1.1;
 			}
 			t++;
 		}
