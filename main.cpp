@@ -59,6 +59,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 		switch (scene) {
 
 		case TITLE: {
+			DrawStringToHandle(97, HEIGHT / 3 - 3, "TACCOVADER GAME", ORANGE, FONT_TITLE);
 			DrawStringToHandle(100, HEIGHT / 3, "TACCOVADER GAME", WHITE, FONT_TITLE);
 			DrawStringToHandle(250, HEIGHT * 2 / 3, "Sキーを押すとゲームを開始します", WHITE, FONT_TITLE_SMALL);
 			DrawStringToHandle(250, HEIGHT * 3 / 4, "右移動:L 左移動:J 弾発射: Z", WHITE, FONT_TITLE_SMALL);
