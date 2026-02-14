@@ -42,10 +42,22 @@ void check_block_enemybullet(objects& objects1) {
 	vector<bullet>& ene_bul = objects1.ene_bul;
 	vector<block>& blo = objects1.blo;
 	for (int i = 0; i < BLOCKNUM; i++) {
-		int block_x = blo.at(i).x, block_y = blo.at(i).y;
+		int block_x = blo.at(i).x;
+		int block_y = blo.at(i).y;
+		int block_right = block_x + BLOCKSIZE;
+		int block_bottom = block_y + BLOCKSIZE;
 		for (int j = 0; j < ENEMYNUM; j++) {
-			int bullet_x = ene_bul.at(j).x, bullet_y = ene_bul.at(j).y;
-			if (block_x <= bullet_x && bullet_x < block_x + BLOCKSIZE && block_y <= bullet_y + BULLET_RAD) {
+			if (ene_bul.at(j).state != 1) continue; //弾が存在しないときはスキップ.
+			int bullet_x = ene_bul.at(j).x;
+			int bullet_y = ene_bul.at(j).y;
+
+			int closestX = (bullet_x < block_x) ? block_x : (bullet_x > block_right ? block_right : bullet_x);
+			int closestY = (bullet_y < block_y) ? block_y : (bullet_y > block_bottom ? block_bottom : bullet_y);
+
+			int dx = bullet_x - closestX;
+			int dy = bullet_y - closestY;
+
+			if (dx * dx + dy * dy <= (BULLET_RAD * BULLET_RAD)) {
 				ene_bul.at(j).state = 0;
 			}
 		}
