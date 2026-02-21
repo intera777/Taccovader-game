@@ -10,6 +10,7 @@ void game_start_initialize(objects& objects1) {
 	effect_initialize(objects1, ENEMYNUM);
 	objects1.score = 0;
 	change_background(objects1);
+	objects1.timer_stage = 0;
 }
 
 void scene_change(int s, objects& objects1) { //ˆø”‚Í•ÏXæ‚ÌƒV[ƒ“.

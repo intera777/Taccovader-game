@@ -23,6 +23,7 @@ struct objects {
 	int stage; //現在のステージ.
 	int scene; //現在のゲームモード.
 	int current_background; // 現在の背景画像のID.
+	int timer_stage; // ステージの経過時間を管理するタイマー.
 };
 
 void game_start_initialize(objects& objects1);

@@ -12,6 +12,7 @@ struct enemy {
 	double x;
 	double y;
 	int state;
+	int move_type; //ステージ3における敵の動きのパターンを管理する変数.
 };
 
 

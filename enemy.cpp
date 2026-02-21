@@ -92,6 +92,14 @@ void move_enemy(objects& objects1) {
 		break;
 	}
 
+	case 3: {
+		int& timer = objects1.timer_stage;
+		if (timer % 180 == 0) {
+			ene.at(2*timer / 180).x = 80;
+			ene.at(2*timer / 180).y = 20;
+		}
+		break;
+	}
 	default:
 		break;
 
@@ -100,9 +108,9 @@ void move_enemy(objects& objects1) {
 
 void enemy_initialize(objects& objects1) {
 	int stage = objects1.stage;
+	vector<enemy>& ene = objects1.ene;
 	switch (stage) {
 	case 1: {
-		vector<enemy>& ene = objects1.ene;
 		for (int i = 0; i < ENEMYNUM; i++) {
 			ene.at(i).x = 60 * (i % (ENEMYNUM / 2) + 1) + 80;
 			ene.at(i).y = 20 + 40 * (i / (ENEMYNUM / 2));
@@ -111,13 +119,22 @@ void enemy_initialize(objects& objects1) {
 		break;
 	}
 	case 2: {
-		vector<enemy>& ene2 = objects1.ene;
 		for (int i = 0; i < ENEMYNUM; i++) {
-			ene2.at(i).x = 60 * (i % (ENEMYNUM / 2) + 1) + 80;
-			ene2.at(i).y = 20 + 30 * (i / (ENEMYNUM / 2));
-			ene2.at(i).state = 1;
+			ene.at(i).x = 60 * (i % (ENEMYNUM / 2) + 1) + 80;
+			ene.at(i).y = 20 + 30 * (i / (ENEMYNUM / 2));
+			ene.at(i).state = 1;
 		}
 		break;
+	}
+	case 3: {
+		random_device rd;
+		mt19937 gen(rd());
+
+		uniform_int_distribution<> dis(1, 3);
+		int temp = dis(gen);
+		for (int i = 0; i < ENEMYNUM; i++) {
+			ene.at(i).move_type = temp;
+		}
 	}
 
 	default:
