@@ -67,6 +67,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 			if (CheckHitKey(KEY_INPUT_S) == 1) {
 				scene_change(PLAY, objects1);
 				game_start_initialize(objects1);
+
+				/*objects1.stage = 2;
+				scene_change(CLEAR, objects1);*/
+
 			}
 			break;
 		}
@@ -152,7 +156,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 			break;
 
 		case CLEAR:
-			if (stage == 2) {
+			if (stage < 3) { //次のステージがある場合.
 				DrawStringToHandle(300, HEIGHT / 2, "STAGE CLEAR!", WHITE,FONT_TITLE);
 				DrawStringToHandle(300, HEIGHT * 2 / 3, "Sキーを押すと次のステージへ進みます", WHITE, FONT_TITLE_SMALL);
 				DrawStringToHandle(300, HEIGHT * 2 / 3 + 40, "Qキーを押すとゲームを終了します", WHITE, FONT_TITLE_SMALL);

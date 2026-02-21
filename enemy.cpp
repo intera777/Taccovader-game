@@ -49,7 +49,7 @@ void move_enemy(objects& objects1) {
 		if (((0 <= t && t < speed) || (speed * 5 <= t && t < speed * 6)) && t % ENEMY_MOVE_COOLTIME == 0) {
 
 			for (int i = 0; i < ENEMYNUM; i++) {
-				ene.at(i).x -= ENEMY_MOVE_COOLTIME*1.1;
+				ene.at(i).x -= ENEMY_MOVE_COOLTIME * 1.1;
 			}
 			if (t == speed * 6 - 1) {
 				t = 0;
@@ -68,7 +68,7 @@ void move_enemy(objects& objects1) {
 		}
 		else if (speed * 2 <= t && t < speed * 4) {
 			for (int i = 0; i < ENEMYNUM; i++) {
-				ene.at(i).x += ENEMY_MOVE_COOLTIME*1.1;
+				ene.at(i).x += ENEMY_MOVE_COOLTIME * 1.1;
 			}
 			t++;
 		}
@@ -95,8 +95,88 @@ void move_enemy(objects& objects1) {
 	case 3: {
 		int& timer = objects1.timer_stage;
 		if (timer % 180 == 0) {
-			ene.at(2*timer / 180).x = 80;
-			ene.at(2*timer / 180).y = 20;
+			ene.at(2 * timer / 180).state = 1;
+			ene.at(2 * timer / 180).x = 80;
+			ene.at(2 * timer / 180).y = 20;
+
+			ene.at(2 * timer / 180 + 1).state = 1;
+			ene.at(2 * timer / 180 + 1).x = WIDTH - 250;
+			ene.at(2 * timer / 180 + 1).y = 20;
+		}
+		for (int i = 0; i < ENEMYNUM; i++) {
+			int& c = ene.at(i).enemy_cycle;
+			if (ene.at(i).state == 1) {
+				switch (ene.at(i).move_type) {
+				case 1: {
+					if (0 <= c && c < 20) {
+						ene.at(i).x += 2 * ENEMY_MOVE_COOLTIME;
+
+					}
+					else if (20 <= c && c < 40) {
+						ene.at(i).y += 2 * ENEMY_MOVE_COOLTIME;
+					}
+					else if (40 <= c && c < 60) {
+						ene.at(i).x -= 2 * ENEMY_MOVE_COOLTIME;
+					}
+					else if (60 <= c && c < 80) {
+						ene.at(i).y += 2 * ENEMY_MOVE_COOLTIME;
+					}
+
+					c++;
+					if (c == 80) {
+						c = 0;
+					}
+					break;
+				}
+				case 2: {
+					if (0 <= c && c < 30) {
+						ene.at(i).x += 3 * ENEMY_MOVE_COOLTIME;
+
+					}
+					else if (30 <= c && c < 50) {
+						ene.at(i).y += 2 * ENEMY_MOVE_COOLTIME;
+					}
+					else if (50 <= c && c < 80) {
+						ene.at(i).x -= 3 * ENEMY_MOVE_COOLTIME;
+					}
+					else if (80 <= c && c < 100) {
+						ene.at(i).y += 2 * ENEMY_MOVE_COOLTIME;
+					}
+
+					c++;
+					if (c == 100) {
+						c = 0;
+					}
+					break;
+				}
+				case 3: {
+					if (0 <= c && c < 40) {
+						ene.at(i).x += 4 * ENEMY_MOVE_COOLTIME;
+
+					}
+					else if (40 <= c && c < 60) {
+						ene.at(i).y += 2 * ENEMY_MOVE_COOLTIME;
+					}
+					else if (60 <= c && c < 100) {
+						ene.at(i).x -= 4 * ENEMY_MOVE_COOLTIME;
+					}
+					else if (100 <= c && c < 120) {
+						ene.at(i).y += 2 * ENEMY_MOVE_COOLTIME;
+					}
+
+					c++;
+					if (c == 120) {
+						c = 0;
+					}
+					break;
+				}
+				default:
+					break;
+				}
+			}
+		}
+		if (timer < 180 * ENEMYNUM / 2 - 1) {
+			timer++;
 		}
 		break;
 	}
@@ -131,9 +211,10 @@ void enemy_initialize(objects& objects1) {
 		mt19937 gen(rd());
 
 		uniform_int_distribution<> dis(1, 3);
-		int temp = dis(gen);
 		for (int i = 0; i < ENEMYNUM; i++) {
-			ene.at(i).move_type = temp;
+			ene.at(i).move_type = dis(gen);
+			ene.at(i).enemy_cycle = 0;
+			ene.at(i).state = -1;//-1‚Í“G‚ª–¢¶¬‚Å‚ ‚é‚±‚Æ‚ð•\‚·.
 		}
 	}
 
@@ -147,7 +228,7 @@ void check_enemy_completed(objects& objects1) {
 
 	int flag = 1;
 	for (int i = 0; i < ENEMYNUM; i++) {
-		if (ene.at(i).state == 1) {
+		if (ene.at(i).state != 0) {
 			flag = 0;
 		}
 	}
