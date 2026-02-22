@@ -23,6 +23,7 @@ const int ENEMY_MOVE_SPEED = 40; //敵が1回の移動で動く距離(横).
 const int ENEMY_MOVE_COOLTIME = 1;//敵が動いてから再び動くまでのクールタイム(フレーム数).
 const int ENEMYCYCLE = 150; //敵の動きの周期;
 const int ENEMYBULLETCOOLTIME = 5; //敵の攻撃の周期.
+const int ENENY_APPEAR_COOLTIME = 120; //敵が出現してから次の敵が出現するまでのクールタイム(ステージ3).
 
 const int IMG_ENEMY1 = LoadGraph("image/invader1.png"); //敵の画像1.
 

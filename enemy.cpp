@@ -94,36 +94,36 @@ void move_enemy(objects& objects1) {
 
 	case 3: {
 		int& timer = objects1.timer_stage;
-		if (timer % 180 == 0) {
-			ene.at(2 * timer / 180).state = 1;
-			ene.at(2 * timer / 180).x = 80;
-			ene.at(2 * timer / 180).y = 20;
+		if (timer % ENENY_APPEAR_COOLTIME == 0) {
+			ene.at(2 * timer / ENENY_APPEAR_COOLTIME).state = 1;
+			ene.at(2 * timer / ENENY_APPEAR_COOLTIME).x = 80;
+			ene.at(2 * timer / ENENY_APPEAR_COOLTIME).y = 20;
 
-			ene.at(2 * timer / 180 + 1).state = 1;
-			ene.at(2 * timer / 180 + 1).x = WIDTH - 250;
-			ene.at(2 * timer / 180 + 1).y = 20;
+			ene.at(2 * timer / ENENY_APPEAR_COOLTIME + 1).state = 1;
+			ene.at(2 * timer / ENENY_APPEAR_COOLTIME + 1).x = WIDTH - 250;
+			ene.at(2 * timer / ENENY_APPEAR_COOLTIME + 1).y = 20;
 		}
 		for (int i = 0; i < ENEMYNUM; i++) {
 			int& c = ene.at(i).enemy_cycle;
 			if (ene.at(i).state == 1) {
 				switch (ene.at(i).move_type) {
 				case 1: {
-					if (0 <= c && c < 20) {
-						ene.at(i).x += 2 * ENEMY_MOVE_COOLTIME;
+					if (0 <= c && c < 10) {
+						ene.at(i).x += 4 * ENEMY_MOVE_COOLTIME;
 
 					}
-					else if (20 <= c && c < 40) {
+					else if (10 <= c && c < 30) {
 						ene.at(i).y += 2 * ENEMY_MOVE_COOLTIME;
 					}
-					else if (40 <= c && c < 60) {
-						ene.at(i).x -= 2 * ENEMY_MOVE_COOLTIME;
+					else if (30 <= c && c < 40) {
+						ene.at(i).x -= 4 * ENEMY_MOVE_COOLTIME;
 					}
-					else if (60 <= c && c < 80) {
+					else if (40 <= c && c < 50) {
 						ene.at(i).y += 2 * ENEMY_MOVE_COOLTIME;
 					}
 
 					c++;
-					if (c == 80) {
+					if (c == 50) {
 						c = 0;
 					}
 					break;
@@ -175,7 +175,7 @@ void move_enemy(objects& objects1) {
 				}
 			}
 		}
-		if (timer < 180 * ENEMYNUM / 2 - 1) {
+		if (timer < ENENY_APPEAR_COOLTIME * ENEMYNUM / 2 - 1) {
 			timer++;
 		}
 		break;
