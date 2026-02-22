@@ -15,3 +15,4 @@ extern int BACK10;
 void background_initialize();
 void draw_background(objects& objects1);
 void change_background(objects& objects1);
+void draw_backenemy(objects& objects1);

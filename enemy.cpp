@@ -38,6 +38,37 @@ void draw_enemy(objects& objects1) {
 	}
 }
 
+void draw_enemy_back(objects& objects1) {
+	vector<enemy>& ene = objects1.ene_back;
+	int img_enemy = LoadGraph("image/invader1.png");
+	for (int i = 0; i < ENEMYNUM_BACK; i++) {
+		if (ene.at(i).state == 1) {
+			DrawGraph(ene.at(i).x - 10, ene.at(i).y - 10, img_enemy, TRUE);
+			//DrawCircle(ene.at(i).x, ene.at(i).y, ENEMY_RAD, RED, TRUE);
+		}
+	}
+}
+
+void enemy_background_initialize(objects& objects1) {
+	vector<enemy>& ene = objects1.ene_back;
+	int t = objects1.timer_background;
+	t = 0;
+	for (int i = 0; i < ENEMYNUM_BACK; i++) {
+		ene.at(i).x = 60 * (i % (ENEMYNUM_BACK / 3) + 1) + 80;
+		ene.at(i).y = HEIGHT - (20 + 60 * (i / (ENEMYNUM_BACK / 3)));
+		ene.at(i).state = 1;
+	}
+}
+
+void check_enemy_background(objects& objects1) {
+	vector<enemy>& ene = objects1.ene_back;
+	for (int i = 0; i < ENEMYNUM_BACK; i++) {
+		int x = ene.at(i).x, y = ene.at(i).y;
+		if (x < 0 || WIDTH < x || y < 0 || HEIGHT < y) {
+			ene.at(i).state = 0;
+		}
+	}
+}
 void move_enemy(objects& objects1) {
 	vector<enemy>& ene = objects1.ene;
 	int stage = objects1.stage;
@@ -150,22 +181,22 @@ void move_enemy(objects& objects1) {
 					break;
 				}
 				case 3: {
-					if (0 <= c && c < 40) {
-						ene.at(i).x += 4 * ENEMY_MOVE_COOLTIME;
+					if (0 <= c && c < 60) {
+						ene.at(i).x += 2 * ENEMY_MOVE_COOLTIME;
 
 					}
-					else if (40 <= c && c < 60) {
+					else if (60 <= c && c < 80) {
 						ene.at(i).y += 2 * ENEMY_MOVE_COOLTIME;
 					}
-					else if (60 <= c && c < 100) {
-						ene.at(i).x -= 4 * ENEMY_MOVE_COOLTIME;
+					else if (80 <= c && c < 140) {
+						ene.at(i).x -= 2 * ENEMY_MOVE_COOLTIME;
 					}
-					else if (100 <= c && c < 120) {
+					else if (140 <= c && c < 160) {
 						ene.at(i).y += 2 * ENEMY_MOVE_COOLTIME;
 					}
 
 					c++;
-					if (c == 120) {
+					if (c == 160) {
 						c = 0;
 					}
 					break;

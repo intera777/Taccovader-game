@@ -79,3 +79,14 @@ void change_background(objects& objects1) {
 		break;
 	}
 }
+
+void draw_backenemy(objects& objects1){
+	vector<enemy>& ene = objects1.ene_back;
+	draw_enemy_back(objects1);
+	for (int i = 0; i < ENEMYNUM_BACK; i++) {
+		if (ene.at(i).state == 1) {
+			ene.at(i).y -= 6;
+		}
+	}
+	check_enemy_background(objects1);
+}

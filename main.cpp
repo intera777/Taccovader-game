@@ -19,6 +19,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 	vector<enemy>& ene = objects1.ene; //敵の情報を持つ構造体の配列.
 	vector<block>& blo = objects1.blo; //ブロックの情報を持つ構造体の配列.
 	vector<effect>& exp_eff = objects1.exp_eff; //敵が倒された時のエフェクトの情報を持つ構造体.
+	vector<enemy>& ene_back = objects1.ene_back; //メニュー画面の背景の敵の情報を持つ構造体の配列.
+
+	vector<enemy> ene_background; //メニュー画面の背景の敵の情報を持つ構造体の配列.
+
 
 	//配列の大きさを指定.
 	bul.resize(MAXBULLETNUM);
@@ -26,6 +30,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 	ene.resize(ENEMYNUM);
 	blo.resize(BLOCKNUM);
 	exp_eff.resize(ENEMYNUM);
+	ene_back.resize(ENEMYNUM_BACK);
 
 	objects1.bullet_cooltime = 0; //再び銃弾が発射可能になるまでの時間.
 
@@ -156,8 +161,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 			break;
 
 		case CLEAR:
+			draw_backenemy(objects1);
 			if (stage < 3) { //次のステージがある場合.
-				DrawStringToHandle(300, HEIGHT / 2, "STAGE CLEAR!", WHITE,FONT_TITLE);
+				DrawStringToHandle(300, HEIGHT / 2, "STAGE CLEAR!", WHITE, FONT_TITLE);
 				DrawStringToHandle(300, HEIGHT * 2 / 3, "Sキーを押すと次のステージへ進みます", WHITE, FONT_TITLE_SMALL);
 				DrawStringToHandle(300, HEIGHT * 2 / 3 + 40, "Qキーを押すとゲームを終了します", WHITE, FONT_TITLE_SMALL);
 				if (CheckHitKey(KEY_INPUT_S) == 1) {
@@ -169,10 +175,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 				}
 			}
 			else {
-				DrawString(250, HEIGHT / 2, "ゲームクリア!", WHITE);
-				SetFontSize(20);
-				DrawString(300, HEIGHT * 2 / 3, "Sキーを押すとリスタートします", WHITE);
-				DrawString(300, HEIGHT * 2 / 3 + 40, "Qキーを押すとゲームを終了します", WHITE);
+				DrawStringToHandle(250, HEIGHT / 2, "GAME CLEAR!", WHITE, FONT_TITLE);
+				DrawStringToHandle(300, HEIGHT * 2 / 3, "Sキーを押すとリスタートします", WHITE, FONT_TITLE_SMALL);
+				DrawStringToHandle(300, HEIGHT * 2 / 3 + 40, "Qキーを押すとゲームを終了します", WHITE, FONT_TITLE_SMALL);
 				if (CheckHitKey(KEY_INPUT_S) == 1) {
 					scene_change(TITLE, objects1);
 				}

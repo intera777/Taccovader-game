@@ -8,9 +8,11 @@ void game_start_initialize(objects& objects1) {
 	block_initialize(objects1);
 	bullet_initialize(objects1);
 	effect_initialize(objects1, ENEMYNUM);
+	enemy_background_initialize(objects1);
 	objects1.score = 0;
 	change_background(objects1);
 	objects1.timer_stage = 0;
+	objects1.timer_background = 0;
 }
 
 void scene_change(int s, objects& objects1) { //引数は変更先のシーン.
@@ -28,6 +30,7 @@ void scene_change(int s, objects& objects1) { //引数は変更先のシーン.
 	}
 	else if (s == CLEAR) {
 		PlaySoundMem(BGM_GAMECLEAR, DX_PLAYTYPE_BACK, TRUE);
+		enemy_background_initialize(objects1);
 		stage++;
 	} else if (s == OVER) {
 		PlaySoundMem(BGM_GAMEOVER, DX_PLAYTYPE_BACK, TRUE);
