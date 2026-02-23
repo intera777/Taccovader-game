@@ -73,9 +73,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 				scene_change(PLAY, objects1);
 				game_start_initialize(objects1);
 
-				/*objects1.stage = 2;
-				scene_change(CLEAR, objects1);*/
-
+				//クリア画面のデバック用.
+				/*scene_change(CLEAR, objects1);
+				Sleep(1000);
+				game_start_initialize(objects1);*/
 			}
 			break;
 		}

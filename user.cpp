@@ -59,3 +59,28 @@ void draw_hp(objects& objects1) {
 	user& user1 = objects1.user1;
 	DrawFormatString(WIDTH - 180, 20, WHITE, "HP: %d", user1.hp);
 }
+
+void user_background_initialize(objects& objects1) {
+	user& user_back = objects1.user_back;
+	user_back.x = 180;
+	user_back.y = HEIGHT - 40;
+	user_back.state = 1;
+	user_back.hp = 3;
+}
+
+void check_user_background(objects& objects1) {
+	user& user_back = objects1.user_back;
+	if (user_back.x < 0 || WIDTH < user_back.x || user_back.y < 0 || HEIGHT < user_back.y) {
+		user_back.state = 0;
+	}
+}
+
+void draw_user_back(objects& objects1) {
+	user& user_back = objects1.user_back;
+	int img_user = LoadGraph("image/user.png");
+	if (user_back.state == 1) {
+		DrawGraph(user_back.x, user_back.y, img_user, TRUE);
+		user_back.y -= 3;
+		check_user_background(objects1);
+	}
+}

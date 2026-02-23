@@ -55,7 +55,7 @@ void enemy_background_initialize(objects& objects1) {
 	t = 0;
 	for (int i = 0; i < ENEMYNUM_BACK; i++) {
 		ene.at(i).x = 60 * (i % (ENEMYNUM_BACK / 3) + 1) + 80;
-		ene.at(i).y = HEIGHT - (20 + 60 * (i / (ENEMYNUM_BACK / 3)));
+		ene.at(i).y = HEIGHT - (80 + 60 * (i / (ENEMYNUM_BACK / 3)));
 		ene.at(i).state = 1;
 	}
 }

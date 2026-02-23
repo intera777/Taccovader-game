@@ -3,6 +3,7 @@
 //メインプレイ再開時の初期化.
 void game_start_initialize(objects& objects1) {
 	user_initialize(objects1);
+	user_background_initialize(objects1);
 	enemy_initialize(objects1);
 	enemy_bullet_initialize(objects1);
 	block_initialize(objects1);
@@ -25,7 +26,7 @@ void scene_change(int s, objects& objects1) { //引数は変更先のシーン.
 	else if (s == PLAY) {
 		PlaySoundMem(BGM_STAGE1, DX_PLAYTYPE_BACK | DX_PLAYTYPE_LOOP, TRUE);
 		if (objects1.scene != CLEAR) {
-			stage = 3; //特定のステージのテストをしたい場合はここを変更.
+			stage = 1; //特定のステージのテストをしたい場合はここを変更.
 		}
 	}
 	else if (s == CLEAR) {

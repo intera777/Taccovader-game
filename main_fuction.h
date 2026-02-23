@@ -11,6 +11,7 @@ struct effect;
 
 struct objects {
 	user user1;
+	user user_back; //メニュー画面の背景のユーザーの情報を持つ構造体.
 	vector<bullet> bul;
 	vector<enemy> ene;
 	vector<bullet> ene_bul;
