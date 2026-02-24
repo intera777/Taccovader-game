@@ -39,7 +39,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 	objects1.enemy_bullet_cooltime = 0;
 
 	objects1.score = 0;
-	objects1.stage = 1;//現在のステージ.
+	objects1.stage = 3;//現在のステージ.
 
 	int& bullet_cooltime = objects1.bullet_cooltime;
 	int& enemy_cycle = objects1.enemy_cycle;
@@ -163,7 +163,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 
 		case CLEAR:
 			draw_backenemy(objects1);
-			if (stage < 3) { //次のステージがある場合.
+			if (stage < 4) { //次のステージがある場合.
 				DrawStringToHandle(300, HEIGHT / 2, "STAGE CLEAR!", WHITE, FONT_TITLE);
 				DrawStringToHandle(300, HEIGHT * 2 / 3, "Sキーを押すと次のステージへ進みます", WHITE, FONT_TITLE_SMALL);
 				DrawStringToHandle(300, HEIGHT * 2 / 3 + 40, "Qキーを押すとゲームを終了します", WHITE, FONT_TITLE_SMALL);
@@ -177,10 +177,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 			}
 			else {
 				DrawStringToHandle(250, HEIGHT / 2, "GAME CLEAR!", WHITE, FONT_TITLE);
-				DrawStringToHandle(300, HEIGHT * 2 / 3, "Sキーを押すとリスタートします", WHITE, FONT_TITLE_SMALL);
+				DrawStringToHandle(300, HEIGHT * 2 / 3, "Sキーを押すとタイトル画面に戻ります", WHITE, FONT_TITLE_SMALL);
 				DrawStringToHandle(300, HEIGHT * 2 / 3 + 40, "Qキーを押すとゲームを終了します", WHITE, FONT_TITLE_SMALL);
 				if (CheckHitKey(KEY_INPUT_S) == 1) {
 					scene_change(TITLE, objects1);
+					Sleep(300);
 				}
 				else if (CheckHitKey(KEY_INPUT_Q) == 1) {
 					scene_change(END, objects1);
