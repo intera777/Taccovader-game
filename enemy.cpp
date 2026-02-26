@@ -211,6 +211,16 @@ void move_enemy(objects& objects1) {
 		}
 		break;
 	}
+
+	case 4: {
+		int& timer = objects1.timer_stage;
+		for (int i = 0; i < ENEMYNUM; i++) {
+			ene.at(i).x = 450 * cos(3 * 2 * acos(-1.0) * ((double)i / ENEMYNUM) + (double)timer / 200) + WIDTH / 2;
+			ene.at(i).y = 200 * sin(4 * 2 * acos(-1.0) * ((double)i / ENEMYNUM) + (double)timer / 200) + 210 + (double)timer / 15;
+		}
+		timer++;
+		break;
+	}
 	default:
 		break;
 
@@ -247,6 +257,14 @@ void enemy_initialize(objects& objects1) {
 			ene.at(i).enemy_cycle = 0;
 			ene.at(i).state = -1;//-1‚Í“G‚ª–¢¶¬‚Å‚ ‚é‚±‚Æ‚ð•\‚·.
 		}
+		break;
+	} case 4: {
+		for (int i = 0; i < ENEMYNUM; i++) {
+			ene.at(i).x = 450 * cos(3 * 2 * acos(-1.0) * ((double)i / ENEMYNUM)) + WIDTH / 2;
+			ene.at(i).y = 200 * sin(4 * 2 * acos(-1.0) * ((double)i / ENEMYNUM)) + 210;
+			ene.at(i).state = 1;
+		}
+		break;
 	}
 
 	default:

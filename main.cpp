@@ -163,7 +163,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 
 		case CLEAR:
 			draw_backenemy(objects1);
-			if (stage < 4) { //次のステージがある場合.
+			if (stage < 5) { //次のステージがある場合.
 				DrawStringToHandle(300, HEIGHT / 2, "STAGE CLEAR!", WHITE, FONT_TITLE);
 				DrawStringToHandle(300, HEIGHT * 2 / 3, "Sキーを押すと次のステージへ進みます", WHITE, FONT_TITLE_SMALL);
 				DrawStringToHandle(300, HEIGHT * 2 / 3 + 40, "Qキーを押すとゲームを終了します", WHITE, FONT_TITLE_SMALL);
