@@ -12,9 +12,13 @@ struct enemy {
 	double x;
 	double y;
 	int state;
+	int hp; //0‚É‚È‚é‚Æstate=0.
+	int enemy_type; //“G‚Ìí—Ş.
 	int move_type; //ƒXƒe[ƒW3‚É‚¨‚¯‚é“G‚Ì“®‚«‚Ìƒpƒ^[ƒ“‚ğŠÇ—‚·‚é•Ï”.
 	int enemy_cycle;
 };
+
+extern int img_enemy1;
 
 
 const int ENEMYNUM = 24;//“G‚Ì”.
@@ -29,6 +33,7 @@ const int ENEMYNUM_BACK = 9;//ƒƒjƒ…[‰æ–Ê‚Ì”wŒi‚Ì“G‚Ì”.
 const int IMG_ENEMY1 = LoadGraph("image/invader1.png"); //“G‚Ì‰æ‘œ1.
 
 
+void load_img_enemy(); //“G‚Ì‰æ‘œ‚ğƒ[ƒh.
 void check_enemy(objects& objects1); //“G‚Ì¶€‚ğŠm”F.
 void draw_enemy(objects& objects1); //“G‚ğ•`‰æ.
 void draw_enemy_back(objects& objects1); //ƒƒjƒ…[‰æ–Ê‚Ì”wŒi‚Ì“G‚ğ•`‰æ.

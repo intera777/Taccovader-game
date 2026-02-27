@@ -1,6 +1,12 @@
 #pragma once
 #include"invadergame2.h"
 
+int img_enemy1;
+
+void load_img_enemy() {
+	img_enemy1 = LoadGraph("image/invader1.png");
+}
+
 void check_enemy(objects& objects1) {
 	vector<enemy>& ene = objects1.ene;
 	vector<bullet>& bul = objects1.bul;
@@ -12,15 +18,19 @@ void check_enemy(objects& objects1) {
 			int x2 = bul.at(j).x, y2 = bul.at(j).y;
 			if (((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) <= (ENEMY_RAD + BULLET_RAD) * (ENEMY_RAD + BULLET_RAD)) && ene.at(i).state == 1 && bul.at(j).state == 1) {
 				PlaySoundMem(SE_ENEMY_BEAT, DX_PLAYTYPE_BACK, TRUE);
-				ene.at(i).state = 0;
-
+				if (ene.at(i).hp > 0) {
+					ene.at(i).hp--;
+				}
 				bul.at(j).x = -100;
 				bul.at(j).y = -100;
 				bul.at(j).state = 0;
-				s += 50;
-				eff.at(i).time = 15;
-				eff.at(i).x = x1 - ENEMY_RAD;
-				eff.at(i).y = y1 - ENEMY_RAD;
+				if (ene.at(i).hp <= 0) {
+					ene.at(i).state = 0;
+					s += 50;
+					eff.at(i).time = 15;
+					eff.at(i).x = x1 - ENEMY_RAD;
+					eff.at(i).y = y1 - ENEMY_RAD;
+				}
 				break;
 			}
 		}
@@ -29,10 +39,9 @@ void check_enemy(objects& objects1) {
 
 void draw_enemy(objects& objects1) {
 	vector<enemy>& ene = objects1.ene;
-	int img_enemy = LoadGraph("image/invader1.png");
 	for (int i = 0; i < ENEMYNUM; i++) {
 		if (ene.at(i).state == 1) {
-			DrawGraph(ene.at(i).x - 10, ene.at(i).y - 10, img_enemy, TRUE);
+			DrawGraph(ene.at(i).x - 10, ene.at(i).y - 10, img_enemy1, TRUE);
 			//DrawCircle(ene.at(i).x, ene.at(i).y, ENEMY_RAD, RED, TRUE);
 		}
 	}
@@ -57,6 +66,7 @@ void enemy_background_initialize(objects& objects1) {
 		ene.at(i).x = 60 * (i % (ENEMYNUM_BACK / 3) + 1) + 80;
 		ene.at(i).y = HEIGHT - (80 + 60 * (i / (ENEMYNUM_BACK / 3)));
 		ene.at(i).state = 1;
+		ene.at(i).hp = 100;
 	}
 }
 
@@ -66,6 +76,7 @@ void check_enemy_background(objects& objects1) {
 		int x = ene.at(i).x, y = ene.at(i).y;
 		if (x < 0 || WIDTH < x || y < 0 || HEIGHT < y) {
 			ene.at(i).state = 0;
+			ene.at(i).hp = 0;
 		}
 	}
 }
@@ -129,10 +140,12 @@ void move_enemy(objects& objects1) {
 			ene.at(2 * timer / ENENY_APPEAR_COOLTIME).state = 1;
 			ene.at(2 * timer / ENENY_APPEAR_COOLTIME).x = 80;
 			ene.at(2 * timer / ENENY_APPEAR_COOLTIME).y = 20;
+			ene.at(2 * timer / ENENY_APPEAR_COOLTIME).hp = 1;
 
 			ene.at(2 * timer / ENENY_APPEAR_COOLTIME + 1).state = 1;
 			ene.at(2 * timer / ENENY_APPEAR_COOLTIME + 1).x = WIDTH - 250;
 			ene.at(2 * timer / ENENY_APPEAR_COOLTIME + 1).y = 20;
+			ene.at(2 * timer / ENENY_APPEAR_COOLTIME + 1).hp = 1;
 		}
 		for (int i = 0; i < ENEMYNUM; i++) {
 			int& c = ene.at(i).enemy_cycle;
@@ -221,6 +234,12 @@ void move_enemy(objects& objects1) {
 		timer++;
 		break;
 	}
+
+	case 5: {
+
+
+		break;
+	}
 	default:
 		break;
 
@@ -236,6 +255,7 @@ void enemy_initialize(objects& objects1) {
 			ene.at(i).x = 60 * (i % (ENEMYNUM / 2) + 1) + 80;
 			ene.at(i).y = 20 + 40 * (i / (ENEMYNUM / 2));
 			ene.at(i).state = 1;
+			ene.at(i).hp = 1;
 		}
 		break;
 	}
@@ -244,6 +264,7 @@ void enemy_initialize(objects& objects1) {
 			ene.at(i).x = 60 * (i % (ENEMYNUM / 2) + 1) + 80;
 			ene.at(i).y = 20 + 30 * (i / (ENEMYNUM / 2));
 			ene.at(i).state = 1;
+			ene.at(i).hp = 1;
 		}
 		break;
 	}
@@ -256,6 +277,7 @@ void enemy_initialize(objects& objects1) {
 			ene.at(i).move_type = dis(gen);
 			ene.at(i).enemy_cycle = 0;
 			ene.at(i).state = -1;//-1‚Í“G‚ª–¢¶¬‚Å‚ ‚é‚±‚Æ‚ð•\‚·.
+			ene.at(i).hp = 1;
 		}
 		break;
 	} case 4: {
@@ -263,6 +285,7 @@ void enemy_initialize(objects& objects1) {
 			ene.at(i).x = 450 * cos(3 * 2 * acos(-1.0) * ((double)i / ENEMYNUM)) + WIDTH / 2;
 			ene.at(i).y = 200 * sin(4 * 2 * acos(-1.0) * ((double)i / ENEMYNUM)) + 210;
 			ene.at(i).state = 1;
+			ene.at(i).hp = 1;
 		}
 		break;
 	}
