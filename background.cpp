@@ -86,7 +86,7 @@ void draw_backenemy(objects& objects1) {
 	int& t = objects1.timer_background;
 	if (t++ > 50) {
 		draw_user_back(objects1);
-		draw_enemy_back(objects1);
+		if (objects1.stage <= 5) { draw_enemy_back(objects1); }
 		for (int i = 0; i < ENEMYNUM_BACK; i++) {
 			if (ene.at(i).state == 1) {
 				ene.at(i).y -= 3;

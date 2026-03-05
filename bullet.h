@@ -10,7 +10,8 @@ struct bullet {
 	int x;
 	int y;
 	int state;
-	//0は待機状態,1はフィールド内に存在.	
+	//0は待機状態,1はフィールド内に存在.
+	int type; // 1は通常の銃弾,2は貫通弾.
 };
 
 const int MAXBULLETNUM = 10; //同時に存在できる弾の数の最大値.

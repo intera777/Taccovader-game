@@ -7,11 +7,11 @@ void bullet_appear(objects& objects1) {
 	int& x = objects1.user1.x;
 	int& y = objects1.user1.y;
 	if (cooltime > 0) { cooltime--; }
-	else if(CheckHitKey(KEY_INPUT_Z)==1){
+	else if (CheckHitKey(KEY_INPUT_Z) == 1) {
 		for (int i = 0; i < MAXBULLETNUM; i++) {
 			if (vec.at(i).state == 0) {
 				vec.at(i).state = 1;
-				vec.at(i).x = x+USER_SIZE/2;
+				vec.at(i).x = x + USER_SIZE / 2;
 				vec.at(i).y = y + USER_SIZE / 2;
 				cooltime = BULLET_COOLTIME;
 				PlaySoundMem(SE_BULLET_SHOOT, DX_PLAYTYPE_BACK, TRUE);
@@ -21,11 +21,11 @@ void bullet_appear(objects& objects1) {
 	}
 }
 
-void bullet_move(objects& objects1, int r,int move_vector) {
+void bullet_move(objects& objects1, int r, int move_vector) {
 	vector<bullet>& vec = objects1.bul;
 	for (int i = 0; i < MAXBULLETNUM; i++) {
 		if (vec.at(i).state == 1) {
-			vec.at(i).y +=move_vector;
+			vec.at(i).y += move_vector;
 			if (vec.at(i).y < r) {
 				vec.at(i).x = -100; vec.at(i).y = -100; vec.at(i).state = 0;
 			}
@@ -45,6 +45,9 @@ void draw_bullet(objects objects1, int r, int color) {
 void bullet_initialize(objects& objects1) {
 	vector<bullet>& bul = objects1.bul;
 	for (int i = 0; i < MAXBULLETNUM; i++) {
-		bul.at(i).x = -100; bul.at(i).y = -100; bul.at(i).state = 0;
+		bul.at(i).x = -100;
+		bul.at(i).y = -100;
+		bul.at(i).state = 0;
+		bul.at(i).type = 1;
 	}
 }

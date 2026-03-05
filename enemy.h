@@ -1,6 +1,7 @@
 #pragma once
 #include"DxLIb.h"
 #include<vector>
+#include<random>
 using namespace std;
 
 struct bullet;
@@ -19,9 +20,11 @@ struct enemy {
 };
 
 extern int img_enemy1;
+extern int img_enemy2;
+extern int enemy_bullet1;
+extern int enemy_bullet2;
 
-
-const int ENEMYNUM = 24;//敵の数.
+const int ENEMYNUM = 3;//敵の数.
 const int ENEMY_RAD = 10; //敵の半径.
 const int ENEMY_MOVE_SPEED = 40; //敵が1回の移動で動く距離(横).
 const int ENEMY_MOVE_COOLTIME = 1;//敵が動いてから再び動くまでのクールタイム(フレーム数).
@@ -30,7 +33,6 @@ const int ENEMYBULLETCOOLTIME = 5; //敵の攻撃の周期.
 const int ENENY_APPEAR_COOLTIME = 120; //敵が出現してから次の敵が出現するまでのクールタイム(ステージ3).
 const int ENEMYNUM_BACK = 9;//メニュー画面の背景の敵の数.
 
-const int IMG_ENEMY1 = LoadGraph("image/invader1.png"); //敵の画像1.
 
 
 void load_img_enemy(); //敵の画像をロード.

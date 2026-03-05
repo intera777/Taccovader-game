@@ -2,9 +2,15 @@
 #include"invadergame2.h"
 
 int img_enemy1;
+int img_enemy2;
+int enemy_bullet1;
+int enemy_bullet2;
 
 void load_img_enemy() {
 	img_enemy1 = LoadGraph("image/invader1.png");
+	img_enemy2 = LoadGraph("image/invader2.png");
+	enemy_bullet1 = LoadGraph("image/enemy_bullet1.png");
+	enemy_bullet2 = LoadGraph("image/enemy_bullet2.png");
 }
 
 void check_enemy(objects& objects1) {
@@ -41,18 +47,25 @@ void draw_enemy(objects& objects1) {
 	vector<enemy>& ene = objects1.ene;
 	for (int i = 0; i < ENEMYNUM; i++) {
 		if (ene.at(i).state == 1) {
-			DrawGraph(ene.at(i).x - 10, ene.at(i).y - 10, img_enemy1, TRUE);
-			//DrawCircle(ene.at(i).x, ene.at(i).y, ENEMY_RAD, RED, TRUE);
+			if (ene.at(i).enemy_type == 1) {
+				DrawGraph(ene.at(i).x - 10, ene.at(i).y - 10, img_enemy1, TRUE);
+				//DrawCircle(ene.at(i).x, ene.at(i).y, ENEMY_RAD, RED, TRUE);
+			}
+			else if (ene.at(i).enemy_type == 2) {
+				DrawGraph(ene.at(i).x - 10, ene.at(i).y - 10, img_enemy2, TRUE);
+			}
+			else {
+				DrawGraph(ene.at(i).x - 10, ene.at(i).y - 10, img_enemy1, TRUE);
+			}
 		}
 	}
 }
 
 void draw_enemy_back(objects& objects1) {
 	vector<enemy>& ene = objects1.ene_back;
-	int img_enemy = LoadGraph("image/invader1.png");
 	for (int i = 0; i < ENEMYNUM_BACK; i++) {
 		if (ene.at(i).state == 1) {
-			DrawGraph(ene.at(i).x - 10, ene.at(i).y - 10, img_enemy, TRUE);
+			DrawGraph(ene.at(i).x - 10, ene.at(i).y - 10, img_enemy1, TRUE);
 			//DrawCircle(ene.at(i).x, ene.at(i).y, ENEMY_RAD, RED, TRUE);
 		}
 	}
@@ -236,8 +249,33 @@ void move_enemy(objects& objects1) {
 	}
 
 	case 5: {
+		int& t = objects1.enemy_cycle;
+		if (((0 <= t && t < speed) || (speed * 5 <= t && t < speed * 6)) && t % ENEMY_MOVE_COOLTIME == 0) {
 
-
+			for (int i = 0; i < ENEMYNUM; i++) {
+				ene.at(i).x -= ENEMY_MOVE_COOLTIME * 1.1;
+			}
+			if (t == speed * 6 - 1) {
+				t = 0;
+			}
+			else {
+				t++;
+			}
+		}
+		else if (((speed <= t && t < speed * 2) || (speed * 4 <= t && t < speed * 5)) && t % ENEMY_MOVE_COOLTIME == 0) {
+			if (t % 2 == 0) {
+				for (int i = 0; i < ENEMYNUM; i++) {
+					ene.at(i).y += max(ENEMY_MOVE_COOLTIME / 2, 1);
+				}
+			}
+			t++;
+		}
+		else if (speed * 2 <= t && t < speed * 4) {
+			for (int i = 0; i < ENEMYNUM; i++) {
+				ene.at(i).x += ENEMY_MOVE_COOLTIME * 1.1;
+			}
+			t++;
+		}
 		break;
 	}
 	default:
@@ -256,6 +294,7 @@ void enemy_initialize(objects& objects1) {
 			ene.at(i).y = 20 + 40 * (i / (ENEMYNUM / 2));
 			ene.at(i).state = 1;
 			ene.at(i).hp = 1;
+			ene.at(i).enemy_type = 1;
 		}
 		break;
 	}
@@ -265,6 +304,7 @@ void enemy_initialize(objects& objects1) {
 			ene.at(i).y = 20 + 30 * (i / (ENEMYNUM / 2));
 			ene.at(i).state = 1;
 			ene.at(i).hp = 1;
+			ene.at(i).enemy_type = 1;
 		}
 		break;
 	}
@@ -278,6 +318,7 @@ void enemy_initialize(objects& objects1) {
 			ene.at(i).enemy_cycle = 0;
 			ene.at(i).state = -1;//-1は敵が未生成であることを表す.
 			ene.at(i).hp = 1;
+			ene.at(i).enemy_type = 1;
 		}
 		break;
 	} case 4: {
@@ -286,8 +327,17 @@ void enemy_initialize(objects& objects1) {
 			ene.at(i).y = 200 * sin(4 * 2 * acos(-1.0) * ((double)i / ENEMYNUM)) + 210;
 			ene.at(i).state = 1;
 			ene.at(i).hp = 1;
+			ene.at(i).enemy_type = 1;
 		}
 		break;
+	} case 5: {
+		for (int i = 0; i < ENEMYNUM; i++) {
+			ene.at(i).x = 60 * (i % (ENEMYNUM / 2) + 1) + 80;
+			ene.at(i).y = 20 + 40 * (i / (ENEMYNUM / 2));
+			ene.at(i).state = 1;
+			ene.at(i).hp = 2;
+			ene.at(i).enemy_type = 2;
+		}
 	}
 
 	default:
@@ -315,6 +365,7 @@ void enemy_bullet_initialize(objects& objects1) {
 		bul.at(i).x = -100;
 		bul.at(i).y = -100;
 		bul.at(i).state = 0;
+		bul.at(i).type = 1;
 	}
 }
 
@@ -322,6 +373,12 @@ void enemy_bullet_appear(objects& objects1) {
 	vector<bullet>& bul = objects1.ene_bul;
 	vector<enemy>& ene = objects1.ene;
 	int& cooltime = objects1.enemy_bullet_cooltime;
+
+	random_device rd;
+	mt19937 gen(rd());
+	uniform_int_distribution<> distrib(0, 99);
+	int t = distrib(gen); //ステージ5での弾の種類の変更用.
+
 	if (cooltime < ENEMYBULLETCOOLTIME) {
 		cooltime++;
 	}
@@ -336,6 +393,9 @@ void enemy_bullet_appear(objects& objects1) {
 				bul.at(index).x = ene.at(index).x;
 				bul.at(index).y = ene.at(index).y + 40;
 				bul.at(index).state = 1;
+				if (objects1.stage == 5 && t >= 60) {
+					bul.at(index).type = 2;
+				}
 				break;
 			}
 			if (ene.at(index).state == 1 && bul.at(index).state == 1) {
@@ -363,10 +423,14 @@ void enemy_bullet_move(objects& objects1, int r, int move_vector) {
 
 void enemy_draw_bullet(objects& objects1, int r, int color) {
 	vector<bullet>& bul = objects1.ene_bul;
-	int img_bullet = LoadGraph("image/enemy_bullet.png");
 	for (int i = 0; i < ENEMYNUM; i++) {
 		if (bul.at(i).state == 1) {
-			DrawGraph(bul.at(i).x - BULLET_RAD, bul.at(i).y - BULLET_RAD, img_bullet, FALSE);
+			if (bul.at(i).type == 1) {
+				DrawGraph(bul.at(i).x - BULLET_RAD, bul.at(i).y - BULLET_RAD, enemy_bullet1, FALSE);
+			}
+			else if (bul.at(i).type == 2) {
+				DrawGraph(bul.at(i).x - BULLET_RAD, bul.at(i).y - BULLET_RAD, enemy_bullet2, FALSE);
+			}
 		}
 	}
 }

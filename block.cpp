@@ -47,7 +47,7 @@ void check_block_enemybullet(objects& objects1) {
 		int block_right = block_x + BLOCKSIZE;
 		int block_bottom = block_y + BLOCKSIZE;
 		for (int j = 0; j < ENEMYNUM; j++) {
-			if (ene_bul.at(j).state != 1) continue; //弾が存在しないときはスキップ.
+			if (ene_bul.at(j).state != 1 || ene_bul.at(j).type == 2) continue; //弾が存在しないときと貫通弾のときはスキップ.
 			int bullet_x = ene_bul.at(j).x;
 			int bullet_y = ene_bul.at(j).y;
 
