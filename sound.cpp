@@ -19,7 +19,7 @@ void sound_initialize() {
 	BGM_TITLE = LoadSoundMem("sound/title.mp3"); //ƒ^ƒCƒgƒ‹‰æ–ÊBGM.
 
 	ChangeVolumeSoundMem(150, SE_ENEMY_BEAT);
-	ChangeVolumeSoundMem(75, SE_BULLET_SHOOT);
+	ChangeVolumeSoundMem(40, SE_BULLET_SHOOT);
 	ChangeVolumeSoundMem(150, SE_USER_DAMAGED);
 	ChangeVolumeSoundMem(120, BGM_GAMEOVER);
 	ChangeVolumeSoundMem(105, BGM_STAGE1);
