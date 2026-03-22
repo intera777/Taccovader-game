@@ -1,6 +1,12 @@
 #pragma once
 #include"invadergame2.h"
 
+int img_user_bullet;
+
+void load_user_bullet() {
+	img_user_bullet = LoadGraph("image/user_bullet.png");
+}
+
 void bullet_appear(objects& objects1) {
 	int& cooltime = objects1.bullet_cooltime;
 	vector<bullet>& vec = objects1.bul;
@@ -37,7 +43,7 @@ void draw_bullet(objects objects1, int r, int color) {
 	vector<bullet>bul = objects1.bul;
 	for (int i = 0; i < MAXBULLETNUM; i++) {
 		if (bul.at(i).state == 1) {
-			DrawCircle(bul.at(i).x, bul.at(i).y, r, color, TRUE);
+			DrawGraph(bul.at(i).x - BULLET_RAD, bul.at(i).y - BULLET_RAD, img_user_bullet, TRUE);
 		}
 	}
 }

@@ -18,9 +18,12 @@ const int MAXBULLETNUM = 10; //“¯‚É‘¶İ‚Å‚«‚é’e‚Ì”‚ÌÅ‘å’l.
 const int BULLET_RAD = 10; //	’e‚Ì”¼Œa.
 const int BULLET_COOLTIME = 15; //’e‚ª”­Ë‚³‚ê‚Ä‚©‚çŸ‚Ì’e‚ª”­Ë‰Â”\‚É‚È‚é‚Ü‚Å‚ÌŠÔ(ƒtƒŒ[ƒ€”).
 
+void load_user_bullet();
 void bullet_appear(objects& objects1);
 //’e‚ª”­Ë‚Å‚«‚é‚©‚Ç‚¤‚©‚ğ”»’f‚µ,”­Ë‚Å‚«‚é‚È‚ç(x,y)‚ÌˆÊ’u‚É’e‚ğ”­Ë‚·‚é.
 
 void bullet_move(objects& objects1, int r, int move_vector);
 void draw_bullet(objects objects1, int r, int color);
 void bullet_initialize(objects& objects1); //e’e‚Ìî•ñ‚ğ‰Šú‰».
+
+extern int user_bullet;

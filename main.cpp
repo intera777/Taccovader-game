@@ -57,6 +57,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 
 	load_img_enemy();
 
+	load_user_bullet();
+
 	scene_change(TITLE, objects1);
 
 	while (1) {
