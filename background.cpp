@@ -14,6 +14,9 @@ int BACK7;
 int BACK8;
 int BACK9;
 int BACK10;
+int BACK_CLEAR;
+int BACK_OVER;
+int BACK_TITLE;
 
 void background_initialize() {
 	BACK1 = LoadGraph("image/back1.png");
@@ -26,6 +29,9 @@ void background_initialize() {
 	BACK8 = LoadGraph("image/back8.png");
 	BACK9 = LoadGraph("image/back9.png");
 	BACK10 = LoadGraph("image/back10.png");
+	BACK_CLEAR = LoadGraph("image/stage_clear.jpg");
+	BACK_OVER = LoadGraph("image/gameover.png");
+	BACK_TITLE = LoadGraph("image/title.png");
 }
 
 void draw_background(objects& objects1) {
@@ -96,4 +102,16 @@ void draw_backenemy(objects& objects1) {
 		check_user_background(objects1);
 		check_enemy_background(objects1);
 	}
+}
+
+void draw_back_title() {
+	DrawGraph(0, 0, BACK_TITLE, FALSE);
+}
+
+void draw_back_clear() {
+	DrawGraph(0, 0, BACK_CLEAR, FALSE);
+}
+
+void draw_back_over() {
+	DrawGraph(0, 0, BACK_OVER, FALSE);
 }

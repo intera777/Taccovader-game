@@ -11,9 +11,11 @@ struct user {
 	int y;
 	int state; //0のときは死んでおり,1のときは生きている.
 	int hp;
+	int damage_timer;
 };
 
 const int USER_SIZE = 40; //ユーザーのサイズ.
+const int DAMAGE_TIMER = 20; //赤い四角を表示する時間.
 
 void draw_user(objects& objects1);
 void move_user(objects& objects1);

@@ -39,7 +39,9 @@ void check_user_alive(objects& objects1) {
 		}
 		if (check_user_enemybullet(objects1) == 1) {
 			PlaySoundMem(SE_USER_DAMAGED, DX_PLAYTYPE_BACK, TRUE);
-			user1.hp--; break;
+			user1.hp--;
+			user1.damage_timer = DAMAGE_TIMER;
+			break;
 		}
 	}
 	if (user1.hp <= 0) {
@@ -53,6 +55,7 @@ void user_initialize(objects& objects1) {
 	user1.y = HEIGHT - 40;
 	user1.state = 1;
 	user1.hp = 3;
+	user1.damage_timer = 0;
 }
 
 void draw_hp(objects& objects1) {

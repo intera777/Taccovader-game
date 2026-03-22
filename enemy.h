@@ -24,7 +24,7 @@ extern int img_enemy2;
 extern int enemy_bullet1;
 extern int enemy_bullet2;
 
-const int ENEMYNUM = 24;//敵の数.
+const int ENEMYNUM = 3;//敵の数.
 const int ENEMY_RAD = 10; //敵の半径.
 const int ENEMY_MOVE_SPEED = 40; //敵が1回の移動で動く距離(横).
 const int ENEMY_MOVE_COOLTIME = 1;//敵が動いてから再び動くまでのクールタイム(フレーム数).

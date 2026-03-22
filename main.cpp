@@ -68,6 +68,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 		switch (scene) {
 
 		case TITLE: {
+			draw_back_title();
 			DrawStringToHandle(97, HEIGHT / 3 - 3, "TACCOVADER GAME", ORANGE, FONT_TITLE);
 			DrawStringToHandle(100, HEIGHT / 3, "TACCOVADER GAME", WHITE, FONT_TITLE);
 			DrawStringToHandle(250, HEIGHT * 2 / 3, "Sキーを押すとゲームを開始します", WHITE, FONT_TITLE_SMALL);
@@ -93,6 +94,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 
 			//ユーザーの描画
 			draw_user(objects1);
+
+			draw_damage_square(objects1);
 
 
 			check_block_bullet(objects1);
@@ -154,6 +157,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 			break;
 
 		case OVER:
+			draw_back_over();
 			DrawStringToHandle(250, HEIGHT / 2, "GAME OVER!", WHITE, FONT_TITLE);
 			DrawStringToHandle(300, HEIGHT * 2 / 3, "Sキーを押すとリスタートします", WHITE, FONT_TITLE_SMALL);
 			DrawStringToHandle(300, HEIGHT * 2 / 3 + 40, "Qキーを押すとゲームを終了します", WHITE, FONT_TITLE_SMALL);
@@ -166,9 +170,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 			break;
 
 		case CLEAR:
+			draw_back_clear();
 			draw_backenemy(objects1);
 			if (stage <= 5) { //次のステージがある場合.
-				DrawStringToHandle(250, HEIGHT / 2, "STAGE CLEAR!", WHITE, FONT_TITLE);
+				DrawStringToHandle(250, HEIGHT / 2, "STAGE CLEAR!", WHITE, FONT_TITLE_FRAME);
 				DrawStringToHandle(300, HEIGHT * 2 / 3, "Sキーを押すと次のステージへ進みます", WHITE, FONT_TITLE_SMALL);
 				DrawStringToHandle(300, HEIGHT * 2 / 3 + 40, "Qキーを押すとゲームを終了します", WHITE, FONT_TITLE_SMALL);
 				if (CheckHitKey(KEY_INPUT_S) == 1) {

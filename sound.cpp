@@ -18,13 +18,13 @@ void sound_initialize() {
 	BGM_GAMECLEAR = LoadSoundMem("sound/gameclear.mp3"); //ゲームクリアBGM.
 	BGM_TITLE = LoadSoundMem("sound/title.mp3"); //タイトル画面BGM.
 
-	ChangeVolumeSoundMem(100, SE_ENEMY_BEAT);
-	ChangeVolumeSoundMem(50, SE_BULLET_SHOOT);
-	ChangeVolumeSoundMem(100, SE_USER_DAMAGED);
-	ChangeVolumeSoundMem(80, BGM_GAMEOVER);
-	ChangeVolumeSoundMem(70, BGM_STAGE1);
-	ChangeVolumeSoundMem(70, BGM_GAMECLEAR);
-	ChangeVolumeSoundMem(70, BGM_TITLE);
+	ChangeVolumeSoundMem(150, SE_ENEMY_BEAT);
+	ChangeVolumeSoundMem(75, SE_BULLET_SHOOT);
+	ChangeVolumeSoundMem(150, SE_USER_DAMAGED);
+	ChangeVolumeSoundMem(120, BGM_GAMEOVER);
+	ChangeVolumeSoundMem(105, BGM_STAGE1);
+	ChangeVolumeSoundMem(105, BGM_GAMECLEAR);
+	ChangeVolumeSoundMem(105, BGM_TITLE);
 }
 
 void stop_allbgm() {

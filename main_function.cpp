@@ -26,7 +26,7 @@ void scene_change(int s, objects& objects1) { //引数は変更先のシーン.
 	else if (s == PLAY) {
 		PlaySoundMem(BGM_STAGE1, DX_PLAYTYPE_BACK | DX_PLAYTYPE_LOOP, TRUE);
 		if (objects1.scene != CLEAR) {
-			stage = 4; //特定のステージのテストをしたい場合はここを変更.
+			stage = 1; //特定のステージのテストをしたい場合はここを変更.
 		}
 	}
 	else if (s == CLEAR) {
