@@ -6,3 +6,4 @@ extern int FONT_TITLE_SMALL;
 extern int FONT_TITLE_FRAME;
 
 void sentence_initialize();
+void display_credit();

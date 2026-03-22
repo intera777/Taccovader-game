@@ -185,7 +185,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 				}
 			}
 			else {
-				DrawStringToHandle(250, HEIGHT / 2, "GAME CLEAR!", WHITE, FONT_TITLE);
+				display_credit();
+				DrawStringToHandle(250, HEIGHT / 2, "GAME CLEAR!", WHITE, FONT_TITLE_FRAME);
 				DrawStringToHandle(300, HEIGHT * 2 / 3, "Sキーを押すとタイトル画面に戻ります", WHITE, FONT_TITLE_SMALL);
 				DrawStringToHandle(300, HEIGHT * 2 / 3 + 40, "Qキーを押すとゲームを終了します", WHITE, FONT_TITLE_SMALL);
 				if (CheckHitKey(KEY_INPUT_S) == 1) {

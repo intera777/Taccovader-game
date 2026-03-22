@@ -426,10 +426,10 @@ void enemy_draw_bullet(objects& objects1, int r, int color) {
 	for (int i = 0; i < ENEMYNUM; i++) {
 		if (bul.at(i).state == 1) {
 			if (bul.at(i).type == 1) {
-				DrawGraph(bul.at(i).x - BULLET_RAD, bul.at(i).y - BULLET_RAD, enemy_bullet1, FALSE);
+				DrawGraph(bul.at(i).x - BULLET_RAD, bul.at(i).y - BULLET_RAD, enemy_bullet1, TRUE);
 			}
 			else if (bul.at(i).type == 2) {
-				DrawGraph(bul.at(i).x - BULLET_RAD, bul.at(i).y - BULLET_RAD, enemy_bullet2, FALSE);
+				DrawGraph(bul.at(i).x - BULLET_RAD, bul.at(i).y - BULLET_RAD, enemy_bullet2, TRUE);
 			}
 		}
 	}
