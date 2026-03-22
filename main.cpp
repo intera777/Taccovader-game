@@ -73,7 +73,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 			DrawStringToHandle(100, HEIGHT / 3, "TACCOVADER GAME", WHITE, FONT_TITLE);
 			DrawStringToHandle(250, HEIGHT * 2 / 3, "Sキーを押すとゲームを開始します", WHITE, FONT_TITLE_SMALL);
 			DrawStringToHandle(250, HEIGHT * 3 / 4, "右移動:L 左移動:J 弾発射: Z", WHITE, FONT_TITLE_SMALL);
-			DrawStringToHandle(700, HEIGHT * 5 / 6, "ver 0.0.2", WHITE, FONT_TITLE_SMALL);
+			DrawStringToHandle(700, HEIGHT * 5 / 6, "ver 1.0.0", WHITE, FONT_TITLE_SMALL);
 			if (CheckHitKey(KEY_INPUT_S) == 1) {
 				scene_change(PLAY, objects1);
 				game_start_initialize(objects1);
