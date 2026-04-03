@@ -1,10 +1,15 @@
 #pragma once
 #include"invadergame2.h"
 
+int img_user;
+
+void load_user() {
+	img_user = LoadGraph("image/user.png");
+}
+
 void draw_user(objects& objects1) {
 	int& x = objects1.user1.x;
 	int& y = objects1.user1.y;
-	int img_user = LoadGraph("image/user.png");
 	DrawGraph(x, y, img_user, TRUE);
 	//DrawBox(x, y, x + 40, y + 40, BLUE, TRUE);
 	//DrawBox(x + 10, y, x + 30, y + 20, WHITE, TRUE);

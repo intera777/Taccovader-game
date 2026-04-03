@@ -1,6 +1,12 @@
 #pragma once
 #include"invadergame2.h"
 
+int img_block;
+
+void load_block() {
+	img_block = LoadGraph("image/block.png");
+}
+
 void draw_block(objects objects1) {
 	vector<block> blo = objects1.blo;
 	int img_block = LoadGraph("image/block.png");

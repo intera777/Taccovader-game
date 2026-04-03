@@ -17,6 +17,7 @@ struct user {
 const int USER_SIZE = 40; //ユーザーのサイズ.
 const int DAMAGE_TIMER = 20; //赤い四角を表示する時間.
 
+void load_user();
 void draw_user(objects& objects1);
 void move_user(objects& objects1);
 void check_user_alive(objects& objects1);
@@ -25,3 +26,5 @@ void draw_hp(objects& objects1); //ユーザーのHPの描画.
 void user_background_initialize(objects& objects1); //メニュー画面の背景のユーザーの情報を初期化.
 void check_user_background(objects& objects1); //メニュー画面の背景のユーザーが画面外にいるか判定.
 void draw_user_back(objects& objects1); //メニュー画面の背景のユーザーの描画.
+
+extern int img_user;

@@ -34,7 +34,7 @@ const int ENENY_APPEAR_COOLTIME = 120; //“G‚ªoŒ»‚µ‚Ä‚©‚çŸ‚Ì“G‚ªoŒ»‚·‚é‚Ü‚Å‚Ìƒ
 const int ENEMYNUM_BACK = 9;//ƒƒjƒ…[‰æ–Ê‚Ì”wŒi‚Ì“G‚Ì”.
 
 
-
+void load_effect();
 void load_img_enemy(); //“G‚Ì‰æ‘œ‚ğƒ[ƒh.
 void check_enemy(objects& objects1); //“G‚Ì¶€‚ğŠm”F.
 void draw_enemy(objects& objects1); //“G‚ğ•`‰æ.
@@ -50,3 +50,5 @@ void enemy_bullet_move(objects& objects1, int r, int move_vector); //“G‚Ìe’e‚ğ“
 void enemy_draw_bullet(objects& objects1, int r, int color); //“G‚Ìe’e‚ğ•`‰æ.
 int check_user_enemybullet(objects& objects1); //ƒ†[ƒU[‚Æ“G‚Ìe’e‚ªG‚ê‚Ä‚¢‚é‚©‚ğ”»’è.
 int check_user_enemy(objects& objects1); //ƒ†[ƒU[‚Æ“G‚ª’¼ÚG‚ê‚Ä‚¢‚é‚©‚ğ”»’è.
+
+extern int img_explosion;

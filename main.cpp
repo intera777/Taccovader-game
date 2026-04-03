@@ -59,6 +59,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine
 
 	load_user_bullet();
 
+	load_user();
+	load_effect();
+	load_block();
+
 	scene_change(TITLE, objects1);
 
 	while (1) {

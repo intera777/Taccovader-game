@@ -1,9 +1,14 @@
 #pragma once
 #include"invadergame2.h"
 
+int img_explosion;
+
+void load_effect() {
+	img_explosion = LoadGraph("image/explosion.png");
+}
+
 void draw_explosion(objects& objects1) {
 	vector<effect>& eff = objects1.exp_eff;
-	int img_explosion = LoadGraph("image/explosion.png");
 	for (int i = 0; i < ENEMYNUM; i++) {
 		if (eff.at(i).time > 0) {
 			DrawGraph(eff.at(i).x, eff.at(i).y, img_explosion, TRUE);
