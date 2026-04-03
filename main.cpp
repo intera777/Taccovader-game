@@ -4,9 +4,10 @@ using namespace std;
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine, int nCmdShow)
 {
 
-	SetWindowText("インベーダーゲーム");
+	SetWindowText("Taccovader Game");
 	SetGraphMode(WIDTH, HEIGHT, 32);
-	ChangeWindowMode(TRUE);
+	ChangeWindowMode(FALSE);
+
 	if (DxLib_Init() == -1) return -1;
 	SetBackgroundColor(0, 0, 0);
 	SetDrawScreen(DX_SCREEN_BACK);
