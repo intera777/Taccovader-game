@@ -1,4 +1,3 @@
-#pragma once
 #include"invadergame2.h"
 using namespace std;
 

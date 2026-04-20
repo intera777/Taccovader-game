@@ -1,5 +1,5 @@
 #pragma once
-#include"DxLIb.h"
+#include"DxLib.h"
 
 #include"enemy.h"
 #include"user.h"

@@ -1,4 +1,3 @@
-#pragma once
 #include"invadergame2.h"
 
 int SE_BULLET_SHOOT; //’e”­ŽË‰¹.

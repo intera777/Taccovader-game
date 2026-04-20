@@ -1,4 +1,3 @@
-#include"invadergame2.h"
 using namespace std;
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR ldCmdLine, int nCmdShow)
