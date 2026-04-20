@@ -1,0 +1,3 @@
+/mnt/c/Users/inter/Documents/GitHub/invadergame2/build/CMakeFiles/Taccovadergame.dir
+/mnt/c/Users/inter/Documents/GitHub/invadergame2/build/CMakeFiles/edit_cache.dir
+/mnt/c/Users/inter/Documents/GitHub/invadergame2/build/CMakeFiles/rebuild_cache.dir
